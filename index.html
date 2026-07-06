@@ -3,130 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Adoptante - Huellitas de Amor</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/adoptante.css">
+    <title>Huellitas de Amor - Adopta, Ama, Transforma</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🐾</span>
+                <span>Huellitas</span>
+            </div>
 
-    <!-- Navegación -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html"><i class="fas fa-paw me-2"></i>Huellitas de Amor</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item px-2"><a class="nav-link" href="#"><i class="fas fa-search me-1"></i>Visitante</a></li>
-                    <li class="nav-item px-2"><a class="nav-link" href="#"><i class="fas fa-home-heart me-1"></i>Refugios</a></li>
-                    <li class="nav-item px-2 d-none" id="adminNavLink"><a class="nav-link" href="admin-dashboard.html"><i class="fas fa-user-shield me-1"></i>Admin</a></li>
-                    <li class="nav-item dropdown ms-lg-4">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=6c5ce7&color=fff" class="rounded-circle me-2" width="32" height="32" alt="Avatar">
-                            <span>Juan Pérez</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="perfil.html"><i class="fas fa-user me-2"></i>Perfil</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="catalogo.html">Mascotas</a></li>
+                <li><a href="#como-adoptar">Cómo adoptar</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-login">Iniciar sesión</a>
+                <a href="registro.html" class="btn-registro">Registrarse</a>
+            </div>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fas fa-home me-2"></i> Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" href="perfil.html"><i class="fas fa-user-edit me-2"></i> Mi Perfil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="solicitudes.html"><i class="fas fa-file-alt me-2"></i> Mis Solicitudes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="seguimiento.html"><i class="fas fa-heartbeat me-2"></i> Seguimiento</a></li>
-                    </ul>
-                </div>
-            </nav>
-
-            <!-- Contenido -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Panel del Adoptante</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <span class="badge bg-info text-dark p-2 me-2">Perfil 85% completado</span>
-                    </div>
-                </div>
-
-                <!-- Resumen de Actividad -->
-                <div class="row g-4 mb-4">
-                    <div class="col-md-4">
-                        <div class="card p-3 border-start border-primary border-4">
-                            <h6>Solicitudes Activas</h6>
-                            <h3 class="mb-0">1</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card p-3 border-start border-success border-4">
-                            <h6>Mascotas Adoptadas</h6>
-                            <h3 class="mb-0">2</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card p-3 border-start border-warning border-4">
-                            <h6>Próximo Reporte</h6>
-                            <h3 class="mb-0">12 días</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MOTOR DE MATCHING -->
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0"><i class="fas fa-magic me-2 text-primary"></i>Mascotas Compatibles contigo</h5>
-                        <small class="text-muted">Basado en tu perfil de vivienda y actividad</small>
-                    </div>
-                    <div class="card-body">
-                        <div class="row g-3" id="matchingResults">
-                            <!-- Los resultados se generan dinámicamente con JS -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Chat Rápido con Refugios -->
-                <div class="card shadow-sm">
-                    <div class="card-header bg-white py-3">
-                        <h5 class="mb-0"><i class="fas fa-comments me-2 text-primary"></i>Conversaciones Recientes</h5>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center py-3">
-                                <img src="https://ui-avatars.com/api/?name=Refugio+San+Roque&background=random" class="rounded-circle me-3" width="40" alt="Refugio">
-                                <div class="flex-grow-1">
-                                    <div class="d-flex justify-content-between">
-                                        <h6 class="mb-1">Refugio San Roque</h6>
-                                        <small class="text-muted">10:45 AM</small>
-                                    </div>
-                                    <p class="mb-0 text-muted small">"Hola Juan, recibimos tus documentos. El fin de semana..."</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </main>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-tagline">Adopta. Ama. Transforma.</p>
+            <h1 class="hero-title">
+                Dales una segunda oportunidad <span class="heart">❤️</span>
+            </h1>
+            <p class="hero-description">
+                En Huellitas conectamos corazones con patitas. Encuentra a tu nuevo mejor amigo y cambia una vida para siempre.
+            </p>
+            <div class="hero-buttons">
+                <a href="catalogo.html" class="btn btn-primary">🐾 Ver mascotas</a>
+                <a href="#como-adoptar" class="btn btn-secondary">❓ ¿Cómo adoptar?</a>
+            </div>
         </div>
-    </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1633722715463-d30628519d59?auto=format&fit=crop&w=500&h=500" alt="Perro feliz">
+        </div>
+    </section>
 
-    <footer class="footer">
-        <div class="container text-center">
-            <p class="small text-muted mb-0">&copy; 2026 Huellitas de Amor. Todos los derechos reservados.</p>
+    <!-- ==================== MASCOTAS DESTACADAS ==================== -->
+    <section class="featured-pets">
+        <div>
+            <div class="section-header">
+                <h2>Mascotas destacadas</h2>
+                <a href="catalogo.html" class="ver-todos">Ver todos →</a>
+            </div>
+
+            <div class="pets-grid">
+                <!-- Mascota 1 -->
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="https://images.unsplash.com/photo-1633722715463-d30628519d59?auto=format&fit=crop&w=300&h=250" alt="Max">
+                        <span class="pet-badge">Perro</span>
+                    </div>
+                    <div class="pet-info">
+                        <h3>Max</h3>
+                        <p class="pet-breed">Golden Retriever</p>
+                        <p class="pet-details">2 años • Mediano • Tranquilo</p>
+                        <div class="pet-footer">
+                            <a href="detalle-mascota.html?id=1" class="btn btn-small">Ver más</a>
+                            <button class="btn-favorite">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mascota 2 -->
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=300&h=250" alt="Luna">
+                        <span class="pet-badge">Gato</span>
+                    </div>
+                    <div class="pet-info">
+                        <h3>Luna</h3>
+                        <p class="pet-breed">Gato Siamés</p>
+                        <p class="pet-details">3 años • Pequeño • Cariñoso</p>
+                        <div class="pet-footer">
+                            <a href="detalle-mascota.html?id=2" class="btn btn-small">Ver más</a>
+                            <button class="btn-favorite">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mascota 3 -->
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="https://images.unsplash.com/photo-1633722715463-d30628519d59?auto=format&fit=crop&w=300&h=250" alt="Rocky">
+                        <span class="pet-badge">Perro</span>
+                    </div>
+                    <div class="pet-info">
+                        <h3>Rocky</h3>
+                        <p class="pet-breed">Bulldog Francés</p>
+                        <p class="pet-details">1 año • Pequeño • Juguetón</p>
+                        <div class="pet-footer">
+                            <a href="detalle-mascota.html?id=3" class="btn btn-small">Ver más</a>
+                            <button class="btn-favorite">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mascota 4 -->
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?auto=format&fit=crop&w=300&h=250" alt="Milo">
+                        <span class="pet-badge">Gato</span>
+                    </div>
+                    <div class="pet-info">
+                        <h3>Milo</h3>
+                        <p class="pet-breed">Gato Persa</p>
+                        <p class="pet-details">4 años • Mediano • Independiente</p>
+                        <div class="pet-footer">
+                            <a href="detalle-mascota.html?id=4" class="btn btn-small">Ver más</a>
+                            <button class="btn-favorite">♡</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CÓMO ADOPTAR ==================== -->
+    <section class="how-to-adopt" id="como-adoptar">
+        <div>
+            <h2>¿Cómo adoptar?</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Regístrate</h3>
+                    <p>Crea tu cuenta en Huellitas de Amor</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Completa tu perfil</h3>
+                    <p>Cuéntanos sobre ti y tu hogar</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Encuentra tu mascota</h3>
+                    <p>Busca entre nuestros animales</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Solicita la adopción</h3>
+                    <p>El refugio revisará tu solicitud</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>¡Conoce a tu mascota!</h3>
+                    <p>Visita el refugio y haz la conexión</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h3>¡A casa!</h3>
+                    <p>Firma el contrato y lleva a tu nuevo amigo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ESTADÍSTICAS ==================== -->
+    <section class="stats">
+        <div>
+            <div class="stats-grid">
+                <div class="stat">
+                    <h3>1,245+</h3>
+                    <p>Mascotas adoptadas</p>
+                </div>
+                <div class="stat">
+                    <h3>45</h3>
+                    <p>Refugios asociados</p>
+                </div>
+                <div class="stat">
+                    <h3>3,890+</h3>
+                    <p>Familias felices</p>
+                </div>
+                <div class="stat">
+                    <h3>98%</h3>
+                    <p>Satisfacción</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" id="contacto">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sobre nosotros</h4>
+                <ul>
+                    <li><a href="nosotros.html">Acerca de Huellitas</a></li>
+                    <li><a href="#">Nuestro equipo</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Carreras</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Centro de ayuda</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Reportar un problema</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Términos de servicio</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Política de cookies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">TikTok</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Huellitas de Amor. Todos los derechos reservados. 🐾</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
