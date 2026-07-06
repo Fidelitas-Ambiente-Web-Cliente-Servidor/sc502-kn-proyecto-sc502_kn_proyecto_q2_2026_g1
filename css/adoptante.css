@@ -1,0 +1,94 @@
+:root {
+    --primary-color: #6c5ce7;
+    --secondary-color: #a29bfe;
+    --accent-color: #fdcb6e;
+    --success-color: #00b894;
+    --danger-color: #d63031;
+    --light-bg: #f9f9f9;
+    --dark-text: #2d3436;
+    --light-text: #636e72;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: var(--primary-color) !important;
+}
+
+.nav-link {
+    color: var(--light-text) !important;
+    font-weight: 500;
+}
+
+.nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+.sidebar {
+    background-color: white;
+    min-height: calc(100vh - 56px);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.sidebar .nav-link {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #f0f0f0;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #5849c4;
+}
+
+.footer {
+    background-color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid #eee;
+}
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-pending { background-color: #ffeaa7; color: #d35400; }
+.status-approved { background-color: #55efc4; color: #00b894; }
+.status-rejected { background-color: #ff7675; color: #d63031; }
+
+
+.timeline { position: relative; padding-left: 3rem; list-style: none; }
+.timeline::before { content: ""; position: absolute; left: 0.75rem; top: 0; bottom: 0; width: 2px; background: #e9ecef; }
+.timeline-item { position: relative; margin-bottom: 2rem; }
+.timeline-marker { position: absolute; left: -2.75rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--primary-color); border: 3px solid white; box-shadow: 0 0 0 2px var(--primary-color); }

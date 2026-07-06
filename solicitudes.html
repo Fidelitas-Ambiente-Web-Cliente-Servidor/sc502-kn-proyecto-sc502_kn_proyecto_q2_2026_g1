@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Solicitudes - Huellitas de Amor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/adoptante.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-paw me-2"></i>Huellitas de Amor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item px-2"><a class="nav-link" href="#"><i class="fas fa-search me-1"></i>Visitante</a></li>
+                    <li class="nav-item px-2"><a class="nav-link" href="#"><i class="fas fa-home-heart me-1"></i>Refugios</a></li>
+                    <li class="nav-item px-2 d-none" id="adminNavLink"><a class="nav-link" href="#"><i class="fas fa-user-shield me-1"></i>Admin</a></li>
+                    <li class="nav-item dropdown ms-lg-4">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=6c5ce7&color=fff" class="rounded-circle me-2" width="32" height="32" alt="Avatar">
+                            <span>Juan Pérez</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="perfil.html"><i class="fas fa-user me-2"></i>Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-2"></i> Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="perfil.html"><i class="fas fa-user-edit me-2"></i> Mi Perfil</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="solicitudes.html"><i class="fas fa-file-alt me-2"></i> Mis Solicitudes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="seguimiento.html"><i class="fas fa-heartbeat me-2"></i> Seguimiento</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Gestión de Solicitudes</h1>
+                </div>
+
+                <!-- Flujo de Solicitud Detallado -->
+                <div class="card mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0">Solicitud Activa: Toby (Beagle)</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Stepper de Progreso -->
+                        <div class="row text-center mb-4">
+                            <div class="col">
+                                <div class="rounded-circle bg-success text-white d-inline-block p-2 mb-1" style="width: 40px; height: 40px;"><i class="fas fa-check"></i></div>
+                                <p class="small mb-0">Enviada</p>
+                            </div>
+                            <div class="col">
+                                <div class="rounded-circle bg-primary text-white d-inline-block p-2 mb-1" style="width: 40px; height: 40px;">2</div>
+                                <p class="small mb-0">Revisión Refugio</p>
+                            </div>
+                            <div class="col">
+                                <div class="rounded-circle bg-light text-muted d-inline-block p-2 mb-1" style="width: 40px; height: 40px;">3</div>
+                                <p class="small mb-0">Entrevista</p>
+                            </div>
+                            <div class="col">
+                                <div class="rounded-circle bg-light text-muted d-inline-block p-2 mb-1" style="width: 40px; height: 40px;">4</div>
+                                <p class="small mb-0">Aprobación</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i> El refugio está revisando tu perfil y documentación. Te notificaremos pronto.
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#chatModal">
+                                <i class="fas fa-comment me-1"></i> Chatear con Refugio
+                            </button>
+                            <button class="btn btn-light text-danger">Cancelar Solicitud</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historial con Firma Digital -->
+                <div class="card">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0">Historial de Adopciones y Contratos</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Mascota</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Firma Digital</th>
+                                        <th>Contrato</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Luna (Gato)</td>
+                                        <td>10/04/2026</td>
+                                        <td><span class="status-badge status-approved">Aprobada</span></td>
+                                        <td><span class="badge bg-secondary"><i class="fas fa-signature me-1"></i>Verificada</span></td>
+                                        <td><button class="btn btn-sm btn-outline-secondary"><i class="fas fa-download"></i> PDF</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal de Chat -->
+    <div class="modal fade" id="chatModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chat con Refugio San Roque</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body bg-light" style="height: 300px; overflow-y: auto;">
+                    <div class="mb-3 text-end">
+                        <div class="bg-primary text-white d-inline-block p-2 rounded">Hola, ¿cuándo puedo visitar a Toby?</div>
+                        <div class="small text-muted">10:40 AM</div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="bg-white border d-inline-block p-2 rounded">Hola Juan, el fin de semana estamos de 10 a 18hs.</div>
+                        <div class="small text-muted">10:45 AM</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" class="form-control" placeholder="Escribe un mensaje...">
+                    <button class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

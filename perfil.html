@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Adoptante - Huellitas de Amor</title>
+    <!-- Usamos Bootstrap 5 para el diseño responsivo -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos para una mejor experiencia visual -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/adoptante.css">
+</head>
+<body>
+
+    <!-- Navegación Principal -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-paw me-2"></i>Huellitas de Amor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item px-2"><a class="nav-link" href="#"><i class="fas fa-search me-1"></i>Visitante</a></li>
+                    <li class="nav-item px-2"><a class="nav-link" href="#"><i class="fas fa-home-heart me-1"></i>Refugios</a></li>
+                    <li class="nav-item px-2 d-none" id="adminNavLink"><a class="nav-link" href="#"><i class="fas fa-user-shield me-1"></i>Admin</a></li>
+                    <li class="nav-item dropdown ms-lg-4">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=6c5ce7&color=fff" class="rounded-circle me-2" width="32" height="32" alt="Avatar">
+                            <span>Juan Pérez</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item active" href="perfil.html"><i class="fas fa-user me-2"></i>Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Barra lateral de navegación del módulo -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-2"></i> Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="perfil.html"><i class="fas fa-user-edit me-2"></i> Mi Perfil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="solicitudes.html"><i class="fas fa-file-alt me-2"></i> Mis Solicitudes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="seguimiento.html"><i class="fas fa-heartbeat me-2"></i> Seguimiento</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Contenido Principal -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Configuración de Perfil de Adoptante</h1>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Formulario de Información Detallada -->
+                    <div class="col-12 col-lg-8">
+                        <div class="card mb-4">
+                            <div class="card-header bg-white py-3">
+                                <h5 class="mb-0">Información de Aptitud para Adopción</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="profileFormDetailed">
+                                    <div class="row g-3">
+                                        <!-- Datos Básicos -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Nombre Completo</label>
+                                            <input type="text" class="form-control" value="Juan Pérez">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Correo Electrónico</label>
+                                            <input type="email" class="form-control" value="juan.perez@email.com">
+                                        </div>
+
+                                        <!-- Campos Técnicos para el Matching -->
+                                        <div class="col-md-6">
+                                            <label class="form-label">Tipo de Vivienda</label>
+                                            <select class="form-select" id="housingType">
+                                                <option value="casa_jardin" selected>Casa con jardín</option>
+                                                <option value="departamento">Departamento</option>
+                                                <option value="finca">Finca / Campo</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Presencia de otros animales</label>
+                                            <select class="form-select" id="otherPets">
+                                                <option value="ninguno">Ninguno</option>
+                                                <option value="perros" selected>Solo perros</option>
+                                                <option value="gatos">Solo gatos</option>
+                                                <option value="ambos">Ambos (perros y gatos)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Disponibilidad de tiempo</label>
+                                            <select class="form-select" id="timeAvailability">
+                                                <option value="baja">Baja (Trabajo fuera de casa)</option>
+                                                <option value="media" selected>Media (Teletrabajo parcial)</option>
+                                                <option value="alta">Alta (Siempre en casa)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Nivel de actividad diaria</label>
+                                            <select class="form-select" id="activityLevel">
+                                                <option value="sedentario">Sedentario</option>
+                                                <option value="moderado" selected>Moderado (Paseos diarios)</option>
+                                                <option value="activo">Activo (Deportes/Running)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Experiencia previa con mascotas</label>
+                                            <textarea class="form-control" rows="3">He tenido perros desde la infancia. Sé manejar razas grandes y tengo conocimientos básicos de entrenamiento positivo.</textarea>
+                                        </div>
+
+                                        <!-- Gestión de Documentos -->
+                                        <div class="col-12 mt-4">
+                                            <h6>Documentación Requerida</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <i class="fas fa-id-card me-2 text-primary"></i>
+                                                        Identificación Oficial (DNI/Pasaporte)
+                                                    </div>
+                                                    <span class="badge bg-success">Subido</span>
+                                                </div>
+                                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <i class="fas fa-home me-2 text-primary"></i>
+                                                        Comprobante de Domicilio
+                                                    </div>
+                                                    <input type="file" class="form-control form-control-sm w-50">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mt-4">
+                                            <button type="submit" class="btn btn-primary">Actualizar Perfil y Recalcular Matching</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favoritos y Accesos Rápidos -->
+                    <div class="col-12 col-lg-4">
+                        <div class="card shadow-sm border-0 mb-4">
+                            <div class="card-header bg-white border-0 py-3">
+                                <h5 class="mb-0">Mi Firma Digital</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <div class="border rounded p-4 mb-3 bg-light" style="height: 150px; display: flex; align-items: center; justify-content: center;">
+                                    <span class="text-muted italic" style="font-family: 'Dancing Script', cursive; font-size: 2rem;">Juan Pérez</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline-secondary">Actualizar Firma</button>
+                                <p class="small text-muted mt-2">Esta firma se utilizará para la suscripción legal de contratos de adopción.</p>
+                            </div>
+                        </div>
+
+                        <div class="card shadow-sm border-0">
+                            <div class="card-header bg-white border-0 py-3">
+                                <h5 class="mb-0">Mis Favoritos</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="favoritesList" class="list-group list-group-flush">
+                                    <!-- Se llena con JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="small text-muted mb-0">&copy; 2026 Huellitas de Amor. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
