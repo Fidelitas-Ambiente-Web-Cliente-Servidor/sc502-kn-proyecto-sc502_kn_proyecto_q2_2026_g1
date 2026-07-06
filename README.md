@@ -2,7 +2,7 @@
 
 # SC502 - KN Proyecto Q2 2026 Grupo 1
 
-## Integrante 4 – Administrador General
+## Henry Diking – Administrador General
 
 ### Responsable
 Administrador General
