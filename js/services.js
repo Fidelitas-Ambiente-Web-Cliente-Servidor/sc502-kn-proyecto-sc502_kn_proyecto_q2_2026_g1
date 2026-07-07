@@ -170,6 +170,108 @@ const PawsMatchService = (() => {
         };
     }
 
+    // ── Refugio module ──────────────────────────────────────────
+
+    function mascotasPorRefugio(refugioId) {
+        return db().mascotas.filter(m => Number(m.refugioId) === Number(refugioId));
+    }
+
+    function crearMascota(datos) {
+        const mascota = {
+            id: nextId(db().mascotas),
+            nombre: datos.nombre,
+            especie: datos.especie,
+            raza: datos.raza || '',
+            edad: datos.edad || '',
+            sexo: datos.sexo || '',
+            descripcion: datos.descripcion || '',
+            foto: datos.foto || '',
+            refugioId: Number(datos.refugioId),
+            estado: 'Disponible',
+            publicada: false,
+            fechaIngreso: new Date().toISOString().slice(0, 10)
+        };
+        db().mascotas.push(mascota);
+        agregarBitacora(Number(datos.refugioId), `Registró mascota ${mascota.nombre}`, 'Mascotas');
+        save();
+        return mascota;
+    }
+
+    function actualizarMascota(id, datos) {
+        const mascota = getMascota(id);
+        if (!mascota) return;
+        Object.assign(mascota, datos);
+        agregarBitacora(mascota.refugioId, `Editó mascota ${mascota.nombre}`, 'Mascotas');
+        save();
+    }
+
+    function eliminarMascota(id) {
+        const idx = db().mascotas.findIndex(m => Number(m.id) === Number(id));
+        if (idx === -1) return;
+        const nombre = db().mascotas[idx].nombre;
+        db().mascotas.splice(idx, 1);
+        agregarBitacora(1, `Eliminó mascota ${nombre}`, 'Mascotas');
+        save();
+    }
+
+    function togglePublicarMascota(id) {
+        const mascota = getMascota(id);
+        if (!mascota) return;
+        mascota.publicada = !mascota.publicada;
+        agregarBitacora(mascota.refugioId, `${mascota.publicada ? 'Publicó' : 'Despublicó'} mascota ${mascota.nombre}`, 'Mascotas');
+        save();
+    }
+
+    function solicitudesPorRefugio(refugioId) {
+        const rid = Number(refugioId);
+        return db().solicitudes
+            .filter(s => Number(s.refugioId) === rid)
+            .map(s => ({
+                ...s,
+                mascota:   getMascota(s.mascotaId)?.nombre   || 'Sin mascota',
+                adoptante: getUsuario(s.adoptanteUsuarioId)?.nombre || 'Sin adoptante',
+                fotoMascota: getMascota(s.mascotaId)?.foto   || '',
+                especieMascota: getMascota(s.mascotaId)?.especie || ''
+            }));
+    }
+
+    function aprobarSolicitud(id) {
+        const sol = db().solicitudes.find(s => Number(s.id) === Number(id));
+        if (!sol) return;
+        sol.estado = 'Aprobada';
+        const mascota = getMascota(sol.mascotaId);
+        if (mascota) { mascota.estado = 'En proceso'; mascota.publicada = false; }
+        agregarBitacora(sol.refugioId, `Aprobó solicitud #${id} para ${mascota?.nombre || ''}`, 'Solicitudes');
+        save();
+    }
+
+    function rechazarSolicitud(id, motivo) {
+        const sol = db().solicitudes.find(s => Number(s.id) === Number(id));
+        if (!sol) return;
+        sol.estado = 'Rechazada';
+        sol.motivoRechazo = motivo || '';
+        agregarBitacora(sol.refugioId, `Rechazó solicitud #${id}`, 'Solicitudes');
+        save();
+    }
+
+    function historialAdopciones(refugioId) {
+        return solicitudesPorRefugio(refugioId).filter(s => s.estado === 'Aprobada');
+    }
+
+    function estadisticasRefugio(refugioId) {
+        const mascotas   = mascotasPorRefugio(refugioId);
+        const solicitudes = solicitudesPorRefugio(refugioId);
+        return {
+            totalMascotas:        mascotas.length,
+            mascotasDisponibles:  mascotas.filter(m => m.estado === 'Disponible').length,
+            mascotasAdoptadas:    mascotas.filter(m => m.estado === 'Adoptado').length,
+            mascotasPublicadas:   mascotas.filter(m => m.publicada).length,
+            solicitudesPendientes: solicitudes.filter(s => ['Pendiente', 'En revisión'].includes(s.estado)).length,
+            solicitudesAprobadas: solicitudes.filter(s => s.estado === 'Aprobada').length,
+            solicitudesRechazadas: solicitudes.filter(s => s.estado === 'Rechazada').length
+        };
+    }
+
     return {
         roles: () => db().roles,
         usuarios: usuariosDetallados,
@@ -188,6 +290,17 @@ const PawsMatchService = (() => {
         marcarNotificacionLeida,
         crearNotificacion,
         guardarConfiguracion,
-        estadisticas
+        estadisticas,
+        // Refugio module
+        mascotasPorRefugio,
+        crearMascota,
+        actualizarMascota,
+        eliminarMascota,
+        togglePublicarMascota,
+        solicitudesPorRefugio,
+        aprobarSolicitud,
+        rechazarSolicitud,
+        historialAdopciones,
+        estadisticasRefugio
     };
 })();

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <title>Catálogo | PawsMatch</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -33,7 +34,17 @@
             </ul>
 
             <div class="nav-buttons">
-                <a href="admin-dashboard.html" class="btn-admin">Admin</a>
+                <!-- DEMO access dropdown — replace with server-side role check on migration -->
+                <div class="nav-panel-dropdown" id="panelDropdown">
+                    <button class="btn-admin" id="panelDropdownBtn">
+                        Roles <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div class="panel-dropdown-menu">
+                        <span class="dropdown-label">Acceso demo</span>
+                        <a href="admin-dashboard.html">🛡️ Administrador</a>
+                        <a href="refugio-dashboard.html">🏠 Refugio</a>
+                    </div>
+                </div>
                 <a href="login.html" class="btn-login">Iniciar sesión</a>
                 <a href="registro.html" class="btn-registro">Registrarse</a>
             </div>

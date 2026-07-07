@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>Solicitudes recibidas | Refugio San Roque</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body" data-page="refugio-solicitudes">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a class="logo" href="index.html">
+                <span class="logo-icon">🐾</span>
+                <div><span>PawsMatch</span><small>Portal de refugio</small></div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Inicio público</a></li>
+                <li><a href="refugio-mascotas.html">Mis mascotas</a></li>
+                <li><a href="refugio-solicitudes.html">Solicitudes</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-login">Cerrar sesión</a>
+            </div>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-title">Refugio San Roque</div>
+            <ul class="sidebar-menu">
+                <li><a href="refugio-dashboard.html"><span>📊</span> Dashboard</a></li>
+                <li><a href="refugio-mascotas.html"><span>🐾</span> Mis mascotas</a></li>
+                <li><a class="active" href="refugio-solicitudes.html"><span>📋</span> Solicitudes</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <div class="admin-header">
+                <div>
+                    <h1>Solicitudes recibidas</h1>
+                    <p>Gestione las solicitudes de adopción de su refugio.</p>
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div><p>Total solicitudes</p><h3 id="kpiTotal">0</h3></div>
+                    <div class="kpi-icon">📋</div>
+                </div>
+                <div class="kpi-card">
+                    <div><p>Pendientes</p><h3 id="kpiPendientes">0</h3></div>
+                    <div class="kpi-icon">⏳</div>
+                </div>
+                <div class="kpi-card">
+                    <div><p>Aprobadas</p><h3 id="kpiAprobadas">0</h3></div>
+                    <div class="kpi-icon">✅</div>
+                </div>
+                <div class="kpi-card">
+                    <div><p>Rechazadas</p><h3 id="kpiRechazadas">0</h3></div>
+                    <div class="kpi-icon">❌</div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div style="display:flex;gap:.6rem;margin-bottom:1.2rem">
+                <button class="btn btn-primary" id="tabActivas" onclick="mostrarTab('activas')">📋 Solicitudes activas</button>
+                <button class="btn btn-secondary" id="tabHistorial" onclick="mostrarTab('historial')">🏠 Historial de adopciones</button>
+            </div>
+
+            <!-- Active requests -->
+            <div id="panelActivas">
+                <section class="admin-card">
+                    <div class="admin-filters">
+                        <div>
+                            <label class="form-label">Buscar</label>
+                            <input id="buscarSolicitud" class="form-control" placeholder="Mascota o adoptante…">
+                        </div>
+                        <div>
+                            <label class="form-label">Estado</label>
+                            <select id="filtroEstadoSol" class="form-select">
+                                <option value="">Todos</option>
+                                <option>Pendiente</option>
+                                <option>En revisión</option>
+                                <option>Rechazada</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="admin-card">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Mascota</th>
+                                    <th>Adoptante</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th>Motivo rechazo</th>
+                                    <th class="text-end">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="solicitudesTbody">
+                                <tr><td colspan="6" class="text-center text-muted py-4">Cargando…</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p id="contadorSolicitudes" class="text-muted" style="margin-top:.6rem;font-size:.85rem"></p>
+                    <ul id="paginacionSolicitudes" class="pagination"></ul>
+                </section>
+            </div>
+
+            <!-- Historial -->
+            <div id="panelHistorial" style="display:none">
+                <section class="admin-card">
+                    <h2 style="margin-bottom:1rem">🏠 Historial de adopciones completadas</h2>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Mascota</th>
+                                    <th>Adoptante</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historialTbody">
+                                <tr><td colspan="4" class="text-center text-muted py-4">Cargando…</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section footer-brand"><h4>🐾 PawsMatch</h4><p>Portal del refugio.</p></div>
+            <div class="footer-section"><h4>Portal</h4><ul>
+                <li><a href="refugio-mascotas.html">Mis mascotas</a></li>
+                <li><a href="refugio-solicitudes.html">Solicitudes</a></li>
+            </ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 PawsMatch. Todos los derechos reservados. 🐾</p></div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/refugio-app.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function mostrarTab(tab) {
+            const activas   = document.getElementById('panelActivas');
+            const historial = document.getElementById('panelHistorial');
+            const btnA      = document.getElementById('tabActivas');
+            const btnH      = document.getElementById('tabHistorial');
+            if (tab === 'activas') {
+                activas.style.display   = '';
+                historial.style.display = 'none';
+                btnA.className = 'btn btn-primary';
+                btnH.className = 'btn btn-secondary';
+            } else {
+                activas.style.display   = 'none';
+                historial.style.display = '';
+                btnA.className = 'btn btn-secondary';
+                btnH.className = 'btn btn-primary';
+            }
+        }
+    </script>
+</body>
+</html>

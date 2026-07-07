@@ -1,129 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Iniciar Sesión | PawMatch</title>
-
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>Iniciar Sesión | PawsMatch</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
-
 <body>
 
 <main class="auth-app">
-
     <section class="auth-shell">
 
         <!-- LADO IZQUIERDO -->
-
         <div class="auth-brand-panel">
-
             <div class="auth-logo">
-
-                <div class="logo-icon">
-                    🐾
-                </div>
-
+                <div class="logo-icon">🐾</div>
                 <div class="logo-text">
-                    <h2>PawMatch</h2>
+                    <h2>PawsMatch</h2>
                     <span>Adopción Responsable</span>
                 </div>
-
             </div>
-
             <div class="auth-brand-content">
-
-                <h1>
-                    Cada mascota merece un hogar lleno de amor.
-                </h1>
-
-                <p>
-                    Ingresa para administrar solicitudes de adopción,
-                    guardar tus mascotas favoritas y dar seguimiento
-                    a cada proceso desde un solo lugar.
-                </p>
-
+                <h1>Cada mascota merece un hogar lleno de amor.</h1>
+                <p>Ingresa para administrar solicitudes de adopción, guardar tus mascotas favoritas y dar seguimiento a cada proceso desde un solo lugar.</p>
             </div>
-
             <div class="auth-image">
-
-               <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=80" alt="Gato">
+                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=80" alt="Gato">
             </div>
-
         </div>
+
         <!-- LADO DERECHO -->
         <div class="auth-form-panel">
             <div class="auth-form-header">
                 <h2>Iniciar sesión</h2>
-                <p>
-                    Bienvenido nuevamente.
-                </p>
-
+                <p>Bienvenido nuevamente.</p>
             </div>
-            <form action="php/auth.php" method="POST" class="auth-form">
 
+            <!-- form has no action/method — handled by JS below -->
+            <!-- MIGRATION: restore action="php/auth.php" method="POST" for Spring Boot -->
+            <form id="loginForm" class="auth-form" novalidate>
                 <div class="form-group">
-                    <label for="correo">
-                        Correo electrónico
-                    </label>
-                    <input
-                        type="email"
-                        id="correo"
-                        name="correo"
-                        placeholder="correo@ejemplo.com"
-                        required>
-            </div>
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo"
+                           placeholder="correo@ejemplo.com" autocomplete="email" required>
+                    <span class="field-error" id="correoError"></span>
+                </div>
                 <div class="form-group">
-                    <label for="password">
-                        Contraseña
-                    </label>
-                 <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="••••••••"
-                        required>
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password"
+                           placeholder="••••••••" autocomplete="current-password" required>
+                    <span class="field-error" id="passwordError"></span>
                 </div>
                 <div class="form-options">
                     <label>
-                        <input type="checkbox">
-                        Recordarme
+                        <input type="checkbox" id="recordarme"> Recordarme
                     </label>
-                    <a href="recuperar_contraseña.html">
-
-                        ¿Olvidaste tu contraseña?
-                    </a>
+                    <a href="recuperar_contraseña.html">¿Olvidaste tu contraseña?</a>
                 </div>
-                <button
-                    type="submit"
-                    class="btn btn-primary auth-btn">
+                <button type="submit" class="btn btn-primary auth-btn" id="loginBtn">
                     Entrar
                 </button>
             </form>
-            <div class="auth-divider">
-                <span>o</span>
-            </div>
-            <p class="auth-link">
-               ¿No tienes una cuenta?
-                <a href="registro.html">
 
-                    Crear cuenta
-                </a>
+            <div class="auth-divider"><span>o</span></div>
+            <p class="auth-link">
+                ¿No tienes una cuenta?
+                <a href="registro.html">Crear cuenta</a>
             </p>
             <div class="back-home">
-                <a href="index.html">
-                    ← Volver al inicio
-                </a>
+                <a href="index.html">← Volver al inicio</a>
             </div>
         </div>
     </section>
-
 </main>
-<script src="js/main.js"></script>
+
+<script src="js/data.js"></script>
+<script src="js/toast.js"></script>
+<script>
+// ── Login handler (demo — no real backend) ──────────────────
+// MIGRATION: remove this <script> block entirely.
+// Spring Boot will handle POST /auth/login and redirect server-side.
+document.addEventListener('DOMContentLoaded', () => {
+    const form     = document.getElementById('loginForm');
+    const btnLogin = document.getElementById('loginBtn');
+
+    // Role → destination mapping (mirrors auth-guard.js)
+    const ROLE_DEST = {
+        1: 'admin-dashboard.html',
+        2: 'refugio-dashboard.html',
+        3: 'perfil.html',
+        4: 'index.html',
+    };
+
+    const ROLE_NAMES = {
+        1: 'ADMIN_GENERAL',
+        2: 'REFUGIO',
+        3: 'ADOPTANTE',
+        4: 'VISITANTE',
+    };
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Clear previous errors
+        document.getElementById('correoError').textContent   = '';
+        document.getElementById('passwordError').textContent = '';
+
+        const correo   = document.getElementById('correo').value.trim().toLowerCase();
+        const password = document.getElementById('password').value;
+
+        // Basic validation
+        if (!correo) {
+            document.getElementById('correoError').textContent = 'Ingresa tu correo.';
+            return;
+        }
+        if (!password) {
+            document.getElementById('passwordError').textContent = 'Ingresa tu contraseña.';
+            return;
+        }
+
+        // Look up user in PawsMatchDB
+        const usuario = window.PawsMatchDB.usuarios.find(
+            u => u.correo.toLowerCase() === correo
+        );
+
+        if (!usuario) {
+            PawsMatchToast.show('Correo no encontrado. Verifica tus datos.', 'error');
+            return;
+        }
+
+        if (usuario.estado === 'Bloqueado') {
+            PawsMatchToast.show('Tu cuenta está bloqueada. Contacta al administrador.', 'warning');
+            return;
+        }
+
+        // Demo: any password accepted — in production Spring Security validates BCrypt hash
+        // Save session to sessionStorage
+        const session = {
+            userId:  usuario.id,
+            nombre:  usuario.nombre,
+            correo:  usuario.correo,
+            rolId:   usuario.rolId,
+            rol:     ROLE_NAMES[usuario.rolId] || 'VISITANTE',
+        };
+        sessionStorage.setItem('pawsMatchSession', JSON.stringify(session));
+
+        PawsMatchToast.show(`Bienvenido, ${usuario.nombre} 👋`, 'success', 1800);
+
+        // Redirect after toast is visible
+        setTimeout(() => {
+            window.location.href = ROLE_DEST[usuario.rolId] || 'index.html';
+        }, 1800);
+
+        btnLogin.disabled = true;
+        btnLogin.textContent = 'Entrando…';
+    });
+});
+</script>
 </body>
 </html>

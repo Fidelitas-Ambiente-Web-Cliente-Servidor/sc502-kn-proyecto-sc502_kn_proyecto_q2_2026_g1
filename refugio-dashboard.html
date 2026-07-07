@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>Dashboard | Refugio San Roque</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body" data-page="refugio-dashboard">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a class="logo" href="index.html">
+                <span class="logo-icon">🐾</span>
+                <div><span>PawsMatch</span><small>Portal de refugio</small></div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Inicio público</a></li>
+                <li><a href="refugio-mascotas.html">Mis mascotas</a></li>
+                <li><a href="refugio-solicitudes.html">Solicitudes</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-login">Cerrar sesión</a>
+            </div>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-title">Refugio San Roque</div>
+            <ul class="sidebar-menu">
+                <li><a class="active" href="refugio-dashboard.html"><span>📊</span> Dashboard</a></li>
+                <li><a href="refugio-mascotas.html"><span>🐾</span> Mis mascotas</a></li>
+                <li><a href="refugio-solicitudes.html"><span>📋</span> Solicitudes</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <div class="admin-header">
+                <div>
+                    <h1>Dashboard del refugio</h1>
+                    <p>Resumen general de Refugio San Roque.</p>
+                </div>
+                <div class="admin-actions">
+                    <a href="refugio-mascotas.html" class="btn btn-primary">🐾 Gestionar mascotas</a>
+                    <a href="refugio-solicitudes.html" class="btn btn-secondary">📋 Ver solicitudes</a>
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div><p>Total mascotas</p><h3 id="kpiTotal">0</h3></div>
+                    <div class="kpi-icon">🐾</div>
+                </div>
+                <div class="kpi-card">
+                    <div><p>Disponibles</p><h3 id="kpiDisponibles">0</h3></div>
+                    <div class="kpi-icon">✅</div>
+                </div>
+                <div class="kpi-card">
+                    <div><p>Adoptadas</p><h3 id="kpiAdoptadas">0</h3></div>
+                    <div class="kpi-icon">🏠</div>
+                </div>
+                <div class="kpi-card">
+                    <div><p>Solicitudes pendientes</p><h3 id="kpiPendientes">0</h3></div>
+                    <div class="kpi-icon">⏳</div>
+                </div>
+            </div>
+
+            <!-- Quick access cards -->
+            <div class="chart-grid" style="margin-bottom:1.4rem">
+                <a href="refugio-mascotas.html" class="admin-card" style="text-decoration:none;display:block;transition:.2s ease" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+                    <div style="font-size:2rem;margin-bottom:.6rem">🐾</div>
+                    <h3 style="margin-bottom:.3rem">Gestión de mascotas</h3>
+                    <p class="text-muted" style="font-size:.9rem">Registrar, editar y publicar mascotas en el catálogo.</p>
+                </a>
+                <a href="refugio-solicitudes.html" class="admin-card" style="text-decoration:none;display:block;transition:.2s ease" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+                    <div style="font-size:2rem;margin-bottom:.6rem">📋</div>
+                    <h3 style="margin-bottom:.3rem">Solicitudes recibidas</h3>
+                    <p class="text-muted" style="font-size:.9rem">Aprobar o rechazar solicitudes de adopción.</p>
+                </a>
+            </div>
+
+            <!-- Latest requests -->
+            <section class="admin-card">
+                <h2 style="margin-bottom:1rem">Últimas solicitudes recibidas</h2>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Mascota</th>
+                                <th>Adoptante</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th class="text-end">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ultimasSolicitudes">
+                            <tr><td colspan="5" class="text-center text-muted py-4">Cargando…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section footer-brand"><h4>🐾 PawsMatch</h4><p>Portal del refugio.</p></div>
+            <div class="footer-section"><h4>Portal</h4><ul>
+                <li><a href="refugio-mascotas.html">Mis mascotas</a></li>
+                <li><a href="refugio-solicitudes.html">Solicitudes</a></li>
+            </ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 PawsMatch. Todos los derechos reservados. 🐾</p></div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/refugio-app.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -15,9 +15,9 @@
             { id: 4, nombre: 'VISITANTE', descripcion: 'Usuario público sin autenticación', estado: 'Activo', permisos: ['Home', 'Catálogo', 'Detalle de mascota'] }
         ],
         usuarios: [
-            { id: 1, nombre: 'Henry Diking', correo: 'admin@huellitas.com', rolId: 1, estado: 'Activo', fechaRegistro: '2026-06-01' },
-            { id: 2, nombre: 'María Fernanda López', correo: 'maria.admin@huellitas.com', rolId: 1, estado: 'Activo', fechaRegistro: '2026-06-05' },
-            { id: 3, nombre: 'Carlos Rojas', correo: 'carlos.soporte@pawmatch.com', rolId: 1, estado: 'Pendiente', fechaRegistro: '2026-06-18' },
+            { id: 1, nombre: 'Henry Diking', correo: 'admin@pawsmatch.com', rolId: 1, estado: 'Activo', fechaRegistro: '2026-06-01' },
+            { id: 2, nombre: 'María Fernanda López', correo: 'maria.admin@pawsmatch.com', rolId: 1, estado: 'Activo', fechaRegistro: '2026-06-05' },
+            { id: 3, nombre: 'Carlos Rojas', correo: 'carlos.soporte@pawsmatch.com', rolId: 1, estado: 'Pendiente', fechaRegistro: '2026-06-18' },
             { id: 4, nombre: 'Refugio San Roque', correo: 'contacto@sanroque.org', rolId: 2, estado: 'Activo', fechaRegistro: '2026-05-10' },
             { id: 5, nombre: 'Refugio Patitas Felices', correo: 'info@patitasfelices.org', rolId: 2, estado: 'Activo', fechaRegistro: '2026-05-20' },
             { id: 6, nombre: 'Refugio Esperanza Animal', correo: 'esperanza@animal.org', rolId: 2, estado: 'Pendiente', fechaRegistro: '2026-06-23' },
@@ -33,15 +33,20 @@
             { id: 4, nombre: 'Hogar Peluditos', administradorUsuarioId: null, provincia: 'Cartago', telefono: '8888-1004', correo: 'hogar@peluditos.org', estado: 'Suspendido', fechaRegistro: '2026-06-28' }
         ],
         mascotas: [
-            { id: 1, nombre: 'Max', especie: 'Perro', refugioId: 1, estado: 'Disponible' },
-            { id: 2, nombre: 'Luna', especie: 'Gato', refugioId: 2, estado: 'En proceso' },
-            { id: 3, nombre: 'Rocky', especie: 'Perro', refugioId: 1, estado: 'Adoptado' },
-            { id: 4, nombre: 'Mía', especie: 'Gato', refugioId: 3, estado: 'Disponible' }
+            { id: 1, nombre: 'Max',   especie: 'Perro', raza: 'Labrador Retriever', edad: '2 años',   sexo: 'Macho',  descripcion: 'Amigable, juguetón y muy cariñoso. Ideal para familias con niños.', foto: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80', refugioId: 1, estado: 'Disponible', publicada: true,  fechaIngreso: '2026-05-15' },
+            { id: 2, nombre: 'Luna',  especie: 'Gato',  raza: 'Siamés',            edad: '4 meses',   sexo: 'Hembra', descripcion: 'Tímida al principio pero muy cariñosa. Esterilizada y vacunada.',        foto: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=500&q=80', refugioId: 2, estado: 'En proceso', publicada: true,  fechaIngreso: '2026-06-01' },
+            { id: 3, nombre: 'Rocky', especie: 'Perro', raza: 'Mestizo',           edad: '1 año',     sexo: 'Macho',  descripcion: 'Energético y leal. Vacunado y desparasitado al día.',                    foto: 'https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=500&q=80', refugioId: 1, estado: 'Adoptado',  publicada: false, fechaIngreso: '2026-04-10' },
+            { id: 4, nombre: 'Mía',   especie: 'Gato',  raza: 'Persa',             edad: '3 años',    sexo: 'Hembra', descripcion: 'Tranquila y elegante. Perfecta para hogares sin otros animales.',        foto: 'https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?auto=format&fit=crop&w=500&q=80', refugioId: 3, estado: 'Disponible', publicada: true,  fechaIngreso: '2026-06-20' },
+            { id: 5, nombre: 'Toby',  especie: 'Perro', raza: 'Beagle',            edad: '3 años',    sexo: 'Macho',  descripcion: 'Curioso y muy sociable. Se lleva bien con otros perros.',                foto: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=500&q=80', refugioId: 1, estado: 'Disponible', publicada: true,  fechaIngreso: '2026-06-05' },
+            { id: 6, nombre: 'Nala',  especie: 'Gato',  raza: 'Mestizo',           edad: '8 meses',   sexo: 'Hembra', descripcion: 'Juguetona y activa. Le encanta explorar y trepar.',                      foto: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80', refugioId: 1, estado: 'Disponible', publicada: true,  fechaIngreso: '2026-06-18' },
+            { id: 7, nombre: 'Bruno', especie: 'Perro', raza: 'Pastor Alemán',     edad: '5 años',    sexo: 'Macho',  descripcion: 'Inteligente y protector. Necesita espacio y ejercicio diario.',          foto: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?auto=format&fit=crop&w=500&q=80', refugioId: 1, estado: 'Disponible', publicada: false, fechaIngreso: '2026-07-01' }
         ],
         solicitudes: [
-            { id: 1, mascotaId: 1, adoptanteUsuarioId: 7, estado: 'Pendiente', fecha: '2026-07-01' },
-            { id: 2, mascotaId: 2, adoptanteUsuarioId: 8, estado: 'En revisión', fecha: '2026-07-03' },
-            { id: 3, mascotaId: 3, adoptanteUsuarioId: 7, estado: 'Aprobada', fecha: '2026-06-26' }
+            { id: 1, mascotaId: 1, adoptanteUsuarioId: 7, refugioId: 1, estado: 'Pendiente',   fecha: '2026-07-01', motivoRechazo: '' },
+            { id: 2, mascotaId: 2, adoptanteUsuarioId: 8, refugioId: 2, estado: 'En revisión', fecha: '2026-07-03', motivoRechazo: '' },
+            { id: 3, mascotaId: 3, adoptanteUsuarioId: 7, refugioId: 1, estado: 'Aprobada',    fecha: '2026-06-26', motivoRechazo: '' },
+            { id: 4, mascotaId: 5, adoptanteUsuarioId: 8, refugioId: 1, estado: 'Pendiente',   fecha: '2026-07-05', motivoRechazo: '' },
+            { id: 5, mascotaId: 6, adoptanteUsuarioId: 9, refugioId: 1, estado: 'Rechazada',   fecha: '2026-07-02', motivoRechazo: 'El adoptante no cumple con los requisitos de espacio.' }
         ],
         bitacora: [
             { id: 1, usuarioId: 1, accion: 'Creó el rol ADMIN_GENERAL', modulo: 'Roles', fecha: '2026-07-01 09:15', ip: '192.168.1.12' },
@@ -54,8 +59,8 @@
             { id: 3, titulo: 'Reporte generado', mensaje: 'El reporte mensual fue generado correctamente.', tipo: 'success', leida: true, fecha: '2026-07-01' }
         ],
         configuracion: {
-            nombreSistema: 'PawMatch',
-            correoSoporte: 'soporte@pawmatch.com',
+            nombreSistema: 'PawsMatch',
+            correoSoporte: 'soporte@pawsmatch.com',
             tiempoSesionMinutos: 30,
             aprobacionRefugiosManual: true,
             notificacionesCorreo: true

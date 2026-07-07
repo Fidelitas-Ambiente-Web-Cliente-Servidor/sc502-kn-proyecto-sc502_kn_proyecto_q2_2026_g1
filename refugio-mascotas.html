@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>Gestión de mascotas | Refugio San Roque</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body" data-page="refugio-mascotas">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a class="logo" href="index.html">
+                <span class="logo-icon">🐾</span>
+                <div><span>PawsMatch</span><small>Portal de refugio</small></div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Inicio público</a></li>
+                <li><a href="refugio-mascotas.html">Mis mascotas</a></li>
+                <li><a href="refugio-solicitudes.html">Solicitudes</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-login">Cerrar sesión</a>
+            </div>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-title">Refugio San Roque</div>
+            <ul class="sidebar-menu">
+                <li><a href="refugio-dashboard.html"><span>📊</span> Dashboard</a></li>
+                <li><a class="active" href="refugio-mascotas.html"><span>🐾</span> Mis mascotas</a></li>
+                <li><a href="refugio-solicitudes.html"><span>📋</span> Solicitudes</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <div class="admin-header">
+                <div>
+                    <h1>Gestión de mascotas</h1>
+                    <p>Administre, publique y edite las mascotas de su refugio.</p>
+                </div>
+                <div class="admin-actions">
+                    <button class="btn btn-primary" data-open-modal="mascotaModal">🐾 Nueva mascota</button>
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div><p>Total mascotas</p><h3 id="kpiTotal">0</h3></div>
+                    <div class="kpi-icon">🐾</div>
+                </div>
+                <div class="kpi-card">
+                    <div><p>Disponibles</p><h3 id="kpiDisponibles">0</h3></div>
+                    <div class="kpi-icon">✅</div>
+                </div>
+                <div class="kpi-card">
+                    <div><p>Publicadas</p><h3 id="kpiPublicadas">0</h3></div>
+                    <div class="kpi-icon">📢</div>
+                </div>
+                <div class="kpi-card">
+                    <div><p>Adoptadas</p><h3 id="kpiAdoptadas">0</h3></div>
+                    <div class="kpi-icon">🏠</div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <section class="admin-card">
+                <div class="admin-filters">
+                    <div>
+                        <label class="form-label">Buscar</label>
+                        <input id="buscarMascota" class="form-control" placeholder="Nombre o raza…">
+                    </div>
+                    <div>
+                        <label class="form-label">Especie</label>
+                        <select id="filtroEspecie" class="form-select">
+                            <option value="">Todas</option>
+                            <option>Perro</option>
+                            <option>Gato</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Estado</label>
+                        <select id="filtroEstado" class="form-select">
+                            <option value="">Todos</option>
+                            <option>Disponible</option>
+                            <option>En proceso</option>
+                            <option>Adoptado</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Table -->
+            <section class="admin-card">
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Mascota</th>
+                                <th>Especie</th>
+                                <th>Edad</th>
+                                <th>Sexo</th>
+                                <th>Estado</th>
+                                <th>Visibilidad</th>
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mascotasTbody">
+                            <tr><td colspan="7" class="text-center text-muted py-4">Cargando…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p id="contadorMascotas" class="text-muted" style="margin-top:.6rem;font-size:.85rem"></p>
+                <ul id="paginacionMascotas" class="pagination"></ul>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section footer-brand"><h4>🐾 PawsMatch</h4><p>Portal del refugio.</p></div>
+            <div class="footer-section"><h4>Portal</h4><ul>
+                <li><a href="refugio-mascotas.html">Mis mascotas</a></li>
+                <li><a href="refugio-solicitudes.html">Solicitudes</a></li>
+            </ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 PawsMatch. Todos los derechos reservados. 🐾</p></div>
+    </footer>
+
+    <!-- ADD / EDIT MASCOTA MODAL -->
+    <div class="modal" id="mascotaModal">
+        <div class="modal-dialog" style="max-width:680px">
+            <form id="formMascota">
+                <input type="hidden" id="mascotaId">
+                <div class="modal-header">
+                    <h2 id="mascotaModalTitle">Nueva mascota</h2>
+                    <button type="button" class="close-modal" data-close-modal>&times;</button>
+                </div>
+                <div class="modal-body form-grid">
+                    <div>
+                        <label class="form-label">Nombre *</label>
+                        <input id="mNombre" class="form-control" required placeholder="Nombre de la mascota">
+                    </div>
+                    <div>
+                        <label class="form-label">Especie *</label>
+                        <select id="mEspecie" class="form-select" required>
+                            <option value="">Selecciona</option>
+                            <option>Perro</option>
+                            <option>Gato</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Raza</label>
+                        <input id="mRaza" class="form-control" placeholder="Labrador, Mestizo…">
+                    </div>
+                    <div>
+                        <label class="form-label">Edad</label>
+                        <input id="mEdad" class="form-control" placeholder="2 años, 4 meses…">
+                    </div>
+                    <div>
+                        <label class="form-label">Sexo</label>
+                        <select id="mSexo" class="form-select">
+                            <option value="">Selecciona</option>
+                            <option>Macho</option>
+                            <option>Hembra</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">URL de foto</label>
+                        <input id="mFoto" class="form-control" placeholder="https://…">
+                    </div>
+                    <div style="grid-column:1/-1">
+                        <label class="form-label">Descripción</label>
+                        <textarea id="mDescripcion" class="form-control" rows="3" placeholder="Descripción de la mascota…"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-close-modal>Cancelar</button>
+                    <button class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/refugio-app.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,10 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ── Hamburger menu ──────────────────────────────────────────
     const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    hamburger?.addEventListener('click', () => {
-        navMenu?.classList.toggle('open');
+    const navMenu   = document.getElementById('navMenu');
+
+    function toggleMenu(force) {
+        const isOpen = force !== undefined ? force : !navMenu.classList.contains('open');
+        navMenu?.classList.toggle('open', isOpen);
+        // Animate hamburger spans → X
+        if (hamburger) {
+            const spans = hamburger.querySelectorAll('span');
+            if (isOpen) {
+                spans[0].style.transform = 'translateY(8px) rotate(45deg)';
+                spans[1].style.opacity   = '0';
+                spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+            } else {
+                spans[0].style.transform = '';
+                spans[1].style.opacity   = '';
+                spans[2].style.transform = '';
+            }
+        }
+    }
+
+    hamburger?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
     });
+
+    // Close when a nav link is tapped on mobile
+    navMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+    });
+
+    // Close when clicking outside the navbar
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.navbar')) toggleMenu(false);
+    });
+
+    // ── Panel access dropdown ────────────────────────────────────
+    // NOTE: purely presentational for demo. When a real auth layer
+    // exists (Spring Security / JWT), replace this block with a
+    // server-rendered <th:if> or a JS check on the session token.
+    const panelDropdown = document.getElementById('panelDropdown');
+    const panelBtn      = document.getElementById('panelDropdownBtn');
+    if (panelDropdown && panelBtn) {
+        panelBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            panelDropdown.classList.toggle('open');
+        });
+        // Close when clicking anywhere outside
+        document.addEventListener('click', () => {
+            panelDropdown.classList.remove('open');
+        });
+    }
 
     // ── Pet Carousel ─────────────────────────────────────────────
     const track    = document.getElementById('carouselTrack');
@@ -112,4 +159,5 @@ document.addEventListener('DOMContentLoaded', () => {
             contactSuccess.style.display = 'block';
         });
     }
+
 });
