@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huellitas de Amor - Adopta, Ama, Transforma</title>
+    <title>PawMatch - Adopción responsable</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body>
-    <!-- ==================== NAVBAR ==================== -->
+
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
                 <span class="logo-icon">🐾</span>
-                <span>Huellitas</span>
+                <div>
+                    <span>PawMatch</span>
+                    <small>Un hogar para siempre 💛</small>
+                </div>
             </div>
 
             <ul class="nav-menu" id="navMenu">
@@ -37,219 +45,208 @@
         </div>
     </nav>
 
-    <!-- ==================== HERO SECTION ==================== -->
-    <section class="hero">
+    <!-- HERO -->
+    <section class="hero hero-modern">
         <div class="hero-content">
-            <p class="hero-tagline">Adopta. Ama. Transforma.</p>
             <h1 class="hero-title">
-                Dales una segunda oportunidad <span class="heart">❤️</span>
+                Ellos no tienen voz,<br>
+                pero <span>tú puedes</span><br>
+                cambiar su mundo
             </h1>
+
             <p class="hero-description">
-                En Huellitas conectamos corazones con patitas. Encuentra a tu nuevo mejor amigo y cambia una vida para siempre.
+                Conectamos corazones y patitas. Encuentra a tu compañero ideal
+                y cambia una vida para siempre.
             </p>
+
             <div class="hero-buttons">
                 <a href="catalogo.html" class="btn btn-primary">🐾 Ver mascotas</a>
-                <a href="#como-adoptar" class="btn btn-secondary">❓ ¿Cómo adoptar?</a>
+                <a href="#como-adoptar" class="btn btn-secondary">♡ ¿Cómo adoptar?</a>
             </div>
         </div>
+
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1633722715463-d30628519d59?auto=format&fit=crop&w=500&h=500" alt="Perro feliz">
+            <div class="hero-bubble">
+                <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=80" alt="Perro feliz">
+            </div>
+
+            <div class="hero-message">
+                <span>💜</span>
+                <p>Cada adopción es un nuevo comienzo</p>
+                <span>🐾</span>
+            </div>
         </div>
     </section>
 
-    <!-- ==================== MASCOTAS DESTACADAS ==================== -->
+    <!-- ESTADÍSTICAS FLOTANTES -->
+    <section class="impact-stats">
+        <div class="impact-card">
+            <div class="impact-item">
+                <span class="impact-icon">🐾</span>
+                <div>
+                    <h3>1,245+</h3>
+                    <p>Adopciones exitosas</p>
+                </div>
+            </div>
+
+            <div class="impact-item">
+                <span class="impact-icon">🏠</span>
+                <div>
+                    <h3>45</h3>
+                    <p>Refugios aliados</p>
+                </div>
+            </div>
+
+            <div class="impact-item">
+                <span class="impact-icon">💜</span>
+                <div>
+                    <h3>3,890+</h3>
+                    <p>Familias felices</p>
+                </div>
+            </div>
+
+            <div class="impact-item">
+                <span class="impact-icon">🛡️</span>
+                <div>
+                    <h3>98%</h3>
+                    <p>Adopciones seguras</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MASCOTAS DESTACADAS -->
     <section class="featured-pets">
         <div>
             <div class="section-header">
                 <h2>Mascotas destacadas</h2>
-                <a href="catalogo.html" class="ver-todos">Ver todos →</a>
+                <a href="catalogo.html" class="ver-todos">Ver todas →</a>
             </div>
 
             <div class="pets-grid">
-                <!-- Mascota 1 -->
                 <div class="pet-card">
                     <div class="pet-image">
-                        <img src="https://images.unsplash.com/photo-1633722715463-d30628519d59?auto=format&fit=crop&w=300&h=250" alt="Max">
+                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80" alt="Max">
                         <span class="pet-badge">Perro</span>
+                        <button class="btn-favorite">♡</button>
                     </div>
                     <div class="pet-info">
-                        <h3>Max</h3>
-                        <p class="pet-breed">Golden Retriever</p>
-                        <p class="pet-details">2 años • Mediano • Tranquilo</p>
-                        <div class="pet-footer">
-                            <a href="detalle-mascota.html?id=1" class="btn btn-small">Ver más</a>
-                            <button class="btn-favorite">♡</button>
-                        </div>
+                        <h3>Max ♂</h3>
+                        <p class="pet-details">2 años • Mediano • Vacunado</p>
                     </div>
                 </div>
 
-                <!-- Mascota 2 -->
                 <div class="pet-card">
                     <div class="pet-image">
-                        <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=300&h=250" alt="Luna">
-                        <span class="pet-badge">Gato</span>
+                        <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=500&q=80" alt="Luna">
+                        <span class="pet-badge badge-pink">Gato</span>
+                        <button class="btn-favorite">♡</button>
                     </div>
                     <div class="pet-info">
-                        <h3>Luna</h3>
-                        <p class="pet-breed">Gato Siamés</p>
-                        <p class="pet-details">3 años • Pequeño • Cariñoso</p>
-                        <div class="pet-footer">
-                            <a href="detalle-mascota.html?id=2" class="btn btn-small">Ver más</a>
-                            <button class="btn-favorite">♡</button>
-                        </div>
+                        <h3>Luna ♀</h3>
+                        <p class="pet-details">4 meses • Hembra • Esterilizada</p>
                     </div>
                 </div>
 
-                <!-- Mascota 3 -->
                 <div class="pet-card">
                     <div class="pet-image">
-                        <img src="https://images.unsplash.com/photo-1633722715463-d30628519d59?auto=format&fit=crop&w=300&h=250" alt="Rocky">
+                        <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=500&q=80" alt="Rocky">
                         <span class="pet-badge">Perro</span>
+                        <button class="btn-favorite">♡</button>
                     </div>
                     <div class="pet-info">
-                        <h3>Rocky</h3>
-                        <p class="pet-breed">Bulldog Francés</p>
-                        <p class="pet-details">1 año • Pequeño • Juguetón</p>
-                        <div class="pet-footer">
-                            <a href="detalle-mascota.html?id=3" class="btn btn-small">Ver más</a>
-                            <button class="btn-favorite">♡</button>
-                        </div>
+                        <h3>Rocky ♂</h3>
+                        <p class="pet-details">1 año • Grande • Vacunado</p>
                     </div>
                 </div>
 
-                <!-- Mascota 4 -->
                 <div class="pet-card">
                     <div class="pet-image">
-                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?auto=format&fit=crop&w=300&h=250" alt="Milo">
-                        <span class="pet-badge">Gato</span>
+                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?auto=format&fit=crop&w=500&q=80" alt="Milo">
+                        <span class="pet-badge badge-pink">Gato</span>
+                        <button class="btn-favorite">♡</button>
                     </div>
                     <div class="pet-info">
-                        <h3>Milo</h3>
-                        <p class="pet-breed">Gato Persa</p>
-                        <p class="pet-details">4 años • Mediano • Independiente</p>
-                        <div class="pet-footer">
-                            <a href="detalle-mascota.html?id=4" class="btn btn-small">Ver más</a>
-                            <button class="btn-favorite">♡</button>
-                        </div>
+                        <h3>Milo ♂</h3>
+                        <p class="pet-details">3 meses • Macho • Desparasitado</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== CÓMO ADOPTAR ==================== -->
+    <!-- CÓMO ADOPTAR -->
     <section class="how-to-adopt" id="como-adoptar">
         <div>
             <h2>¿Cómo adoptar?</h2>
+
             <div class="steps-grid">
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3>Regístrate</h3>
-                    <p>Crea tu cuenta en Huellitas de Amor</p>
+                    <p>Crea tu cuenta dentro de la aplicación.</p>
                 </div>
 
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Completa tu perfil</h3>
-                    <p>Cuéntanos sobre ti y tu hogar</p>
+                    <h3>Explora mascotas</h3>
+                    <p>Revisa el catálogo y encuentra una mascota compatible.</p>
                 </div>
 
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Encuentra tu mascota</h3>
-                    <p>Busca entre nuestros animales</p>
+                    <h3>Solicita adopción</h3>
+                    <p>Envía tu solicitud al refugio correspondiente.</p>
                 </div>
 
                 <div class="step">
                     <div class="step-number">4</div>
-                    <h3>Solicita la adopción</h3>
-                    <p>El refugio revisará tu solicitud</p>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h3>¡Conoce a tu mascota!</h3>
-                    <p>Visita el refugio y haz la conexión</p>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">6</div>
-                    <h3>¡A casa!</h3>
-                    <p>Firma el contrato y lleva a tu nuevo amigo</p>
+                    <h3>Seguimiento</h3>
+                    <p>La aplicación permite dar seguimiento post-adopción.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== ESTADÍSTICAS ==================== -->
-    <section class="stats">
-        <div>
-            <div class="stats-grid">
-                <div class="stat">
-                    <h3>1,245+</h3>
-                    <p>Mascotas adoptadas</p>
-                </div>
-                <div class="stat">
-                    <h3>45</h3>
-                    <p>Refugios asociados</p>
-                </div>
-                <div class="stat">
-                    <h3>3,890+</h3>
-                    <p>Familias felices</p>
-                </div>
-                <div class="stat">
-                    <h3>98%</h3>
-                    <p>Satisfacción</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== FOOTER ==================== -->
+    <!-- FOOTER -->
     <footer class="footer" id="contacto">
         <div class="footer-content">
+            <div class="footer-section footer-brand">
+                <h4>🐾 PawMatch</h4>
+                <p>Un hogar para siempre 💛</p>
+            </div>
+
             <div class="footer-section">
-                <h4>Sobre nosotros</h4>
+                <h4>Enlaces rápidos</h4>
                 <ul>
-                    <li><a href="nosotros.html">Acerca de Huellitas</a></li>
-                    <li><a href="#">Nuestro equipo</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Carreras</a></li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="catalogo.html">Mascotas</a></li>
+                    <li><a href="#como-adoptar">Cómo adoptar</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h4>Ayuda</h4>
+                <h4>Información</h4>
                 <ul>
-                    <li><a href="#">Centro de ayuda</a></li>
-                    <li><a href="#">Contacto</a></li>
                     <li><a href="#">Preguntas frecuentes</a></li>
-                    <li><a href="#">Reportar un problema</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Términos de servicio</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
                     <li><a href="#">Política de privacidad</a></li>
-                    <li><a href="#">Política de cookies</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h4>Síguenos</h4>
+                <h4>¿Necesitas ayuda?</h4>
                 <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">TikTok</a></li>
+                    <li>WhatsApp: 6000-0000</li>
+                    <li>Email: hola@pawmatch.com</li>
+                    <li>Lun - Vie: 8:00 am - 5:00 pm</li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2026 Huellitas de Amor. Todos los derechos reservados. 🐾</p>
+            <p>&copy; 2026 PawMatch. Todos los derechos reservados. 🐾</p>
         </div>
     </footer>
 

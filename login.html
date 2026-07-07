@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iniciar Sesión | PawMatch</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+<main class="auth-app">
+
+    <section class="auth-shell">
+
+        <!-- LADO IZQUIERDO -->
+
+        <div class="auth-brand-panel">
+
+            <div class="auth-logo">
+
+                <div class="logo-icon">
+                    🐾
+                </div>
+
+                <div class="logo-text">
+                    <h2>PawMatch</h2>
+                    <span>Adopción Responsable</span>
+                </div>
+
+            </div>
+
+            <div class="auth-brand-content">
+
+                <h1>
+                    Cada mascota merece un hogar lleno de amor.
+                </h1>
+
+                <p>
+                    Ingresa para administrar solicitudes de adopción,
+                    guardar tus mascotas favoritas y dar seguimiento
+                    a cada proceso desde un solo lugar.
+                </p>
+
+            </div>
+
+            <div class="auth-image">
+
+               <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=80" alt="Gato">
+            </div>
+
+        </div>
+        <!-- LADO DERECHO -->
+        <div class="auth-form-panel">
+            <div class="auth-form-header">
+                <h2>Iniciar sesión</h2>
+                <p>
+                    Bienvenido nuevamente.
+                </p>
+
+            </div>
+            <form action="php/auth.php" method="POST" class="auth-form">
+
+                <div class="form-group">
+                    <label for="correo">
+                        Correo electrónico
+                    </label>
+                    <input
+                        type="email"
+                        id="correo"
+                        name="correo"
+                        placeholder="correo@ejemplo.com"
+                        required>
+            </div>
+                <div class="form-group">
+                    <label for="password">
+                        Contraseña
+                    </label>
+                 <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="••••••••"
+                        required>
+                </div>
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox">
+                        Recordarme
+                    </label>
+                    <a href="recuperar_contraseña.html">
+
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </div>
+                <button
+                    type="submit"
+                    class="btn btn-primary auth-btn">
+                    Entrar
+                </button>
+            </form>
+            <div class="auth-divider">
+                <span>o</span>
+            </div>
+            <p class="auth-link">
+               ¿No tienes una cuenta?
+                <a href="registro.html">
+
+                    Crear cuenta
+                </a>
+            </p>
+            <div class="back-home">
+                <a href="index.html">
+                    ← Volver al inicio
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+<script src="js/main.js"></script>
+</body>
+</html>
