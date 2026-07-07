@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo | PawMatch</title>
+    <title>Catálogo | PawsMatch</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
@@ -13,28 +13,40 @@
 
 <body>
 
-<main class="catalog-page">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🐾</span>
+                <div>
+                    <span>PawsMatch</span>
+                    <small>Un hogar para siempre 💛</small>
+                </div>
+            </div>
 
-    <header class="catalog-header">
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="catalogo.html" class="active">Mascotas</a></li>
+                <li><a href="como-adoptar.html">Cómo adoptar</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
 
-        <div class="catalog-logo">
-            <div class="logo-icon">🐾</div>
+            <div class="nav-buttons">
+                <a href="admin-dashboard.html" class="btn-admin">Admin</a>
+                <a href="login.html" class="btn-login">Iniciar sesión</a>
+                <a href="registro.html" class="btn-registro">Registrarse</a>
+            </div>
 
-            <div>
-                <h2>PawMatch</h2>
-                <span>Encuentra a tu nuevo mejor amigo</span>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
+    </nav>
 
-        <div class="catalog-user">
-            <span>Hola, Usuario 👋</span>
-
-            <a href="login.html" class="logout-btn">
-                Cerrar sesión
-            </a>
-        </div>
-
-    </header>
+<main class="catalog-page">
 
     <section class="catalog-top">
 
@@ -65,13 +77,13 @@
 
         <article class="pet-card">
 
-            <img src="https://i.pinimg.com/1200x/f4/51/b5/f451b5f4958f1ca9fa5d4f836cb4dcbf.jpg">
+            <img src="https://i.pinimg.com/1200x/f4/51/b5/f451b5f4958f1ca9fa5d4f836cb4dcbf.jpg" alt="Max">
 
             <div class="pet-info">
                 <h3>Max</h3>
                 <p>Labrador • 8 años</p>
 
-                <a href="detalle-mascota.html" class="pet-btn">
+                <a href="detalle_mascota.html" class="pet-btn">
                     Ver detalles
                 </a>
             </div>
@@ -80,13 +92,13 @@
 
         <article class="pet-card">
 
-            <img src="https://i.pinimg.com/1200x/9e/b2/2c/9eb22c63db28ca490ba7ef9c8d529028.jpg">
+            <img src="https://i.pinimg.com/1200x/9e/b2/2c/9eb22c63db28ca490ba7ef9c8d529028.jpg" alt="Sky">
 
             <div class="pet-info">
                 <h3>Sky</h3>
                 <p>Siamesa • 1 año</p>
 
-                <a href="detalle-mascota.html" class="pet-btn">
+                <a href="detalle_mascota.html" class="pet-btn">
                     Ver detalles
                 </a>
             </div>
@@ -95,13 +107,13 @@
 
         <article class="pet-card">
 
-            <img src="https://i.pinimg.com/736x/5b/79/94/5b7994f34fb5ece14cbd32b66fdd5a62.jpg">
+            <img src="https://i.pinimg.com/736x/5b/79/94/5b7994f34fb5ece14cbd32b66fdd5a62.jpg" alt="Rocky">
 
             <div class="pet-info">
                 <h3>Rocky</h3>
                 <p>Mestizo • 2 años</p>
 
-                <a href="detalle-mascota.html" class="pet-btn">
+                <a href="detalle_mascota.html" class="pet-btn">
                     Ver detalles
                 </a>
             </div>
@@ -110,65 +122,66 @@
 
         <article class="pet-card">
 
-            <img src="https://i.pinimg.com/736x/a6/c6/23/a6c62312330531c63a3a8ef803279478.jpg">
+            <img src="https://i.pinimg.com/736x/a6/c6/23/a6c62312330531c63a3a8ef803279478.jpg" alt="Erling">
 
             <div class="pet-info">
                 <h3>Erling</h3>
                 <p>Persa • 5 años</p>
 
-                <a href="detalle-mascota.html" class="pet-btn">
+                <a href="detalle_mascota.html" class="pet-btn">
                     Ver detalles
                 </a>
             </div>
 
         </article>
-                <article class="pet-card">
-            <img src="https://www.ladridos.es/images/Septiembre2018/Bulling1.jpg">
+
+        <article class="pet-card">
+            <img src="https://www.ladridos.es/images/Septiembre2018/Bulling1.jpg" alt="Rex">
 
             <div class="pet-info">
-                <h3>Max</h3>
+                <h3>Rex</h3>
                 <p>Pitbull • 4 años</p>
 
-                <a href="detalle-mascota.html" class="pet-btn">
+                <a href="detalle_mascota.html" class="pet-btn">
                     Ver detalles
                 </a>
             </div>
         </article>
 
         <article class="pet-card">
-            <img src="https://i.pinimg.com/736x/68/9b/e1/689be1dce9bc988d9e4748d0e9941cf5.jpg">
+            <img src="https://i.pinimg.com/736x/68/9b/e1/689be1dce9bc988d9e4748d0e9941cf5.jpg" alt="Maggie">
 
             <div class="pet-info">
                 <h3>Maggie</h3>
                 <p>Mestizo • 1 año</p>
 
-                <a href="detalle-mascota.html" class="pet-btn">
+                <a href="detalle_mascota.html" class="pet-btn">
                     Ver detalles
                 </a>
             </div>
         </article>
 
         <article class="pet-card">
-            <img src="https://i.pinimg.com/736x/7c/c6/3b/7cc63b4d2024a3c28353b0b67f6e9176.jpg">
+            <img src="https://i.pinimg.com/736x/7c/c6/3b/7cc63b4d2024a3c28353b0b67f6e9176.jpg" alt="Coco">
 
             <div class="pet-info">
                 <h3>Coco</h3>
-                <p>Mestizo• 1 año</p>
+                <p>Mestizo • 1 año</p>
 
-                <a href="detalle-mascota.html" class="pet-btn">
+                <a href="detalle_mascota.html" class="pet-btn">
                     Ver detalles
                 </a>
             </div>
         </article>
 
         <article class="pet-card">
-            <img src="https://i.pinimg.com/736x/c4/ce/ba/c4ceba26052b7c42a5113a62b265d954.jpg">
+            <img src="https://i.pinimg.com/736x/c4/ce/ba/c4ceba26052b7c42a5113a62b265d954.jpg" alt="Mandarina">
 
             <div class="pet-info">
                 <h3>Mandarina</h3>
                 <p>Mestizo • 2 años</p>
 
-                <a href="detalle-mascota.html" class="pet-btn">
+                <a href="detalle_mascota.html" class="pet-btn">
                     Ver detalles
                 </a>
             </div>

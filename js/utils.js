@@ -1,8 +1,8 @@
 // =====================================================
-// PawMatch - Utilidades frontend
+// PawsMatch - Utilidades frontend
 // =====================================================
 
-const HuellitasUtils = (() => {
+const PawsMatchUtils = (() => {
     function normalizar(texto) {
         return (texto || '').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
     }
@@ -104,3 +104,6 @@ const HuellitasUtils = (() => {
 
     return { normalizar, badgeEstado, badgeRol, exportarCSV, configurarTabla, cerrarModal };
 })();
+
+// Backwards-compat alias
+const HuellitasUtils = PawsMatchUtils;

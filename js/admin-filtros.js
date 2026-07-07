@@ -1,5 +1,5 @@
 // =====================================================
-// Huellitas de Amor - Filtros y paginación del Admin
+// PawsMatch - Filtros y paginación del Admin
 // =====================================================
 // Frontend demo: filtra y pagina las filas existentes en el HTML.
 // Luego se puede reemplazar por consultas reales a Spring Boot.

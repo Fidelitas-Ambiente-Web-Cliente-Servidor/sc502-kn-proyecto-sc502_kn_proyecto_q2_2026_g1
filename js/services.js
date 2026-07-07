@@ -1,10 +1,10 @@
 // =====================================================
-// PawMatch - Servicios frontend
+// PawsMatch - Servicios frontend
 // =====================================================
 
-const HuellitasService = (() => {
-    const db = () => window.HuellitasDB;
-    const save = () => window.HuellitasStorage.save();
+const PawsMatchService = (() => {
+    const db = () => window.PawsMatchDB;
+    const save = () => window.PawsMatchStorage.save();
     const nextId = (coleccion) => Math.max(0, ...coleccion.map(item => item.id || 0)) + 1;
 
     function getRol(id) { return db().roles.find(r => Number(r.id) === Number(id)); }
@@ -191,3 +191,6 @@ const HuellitasService = (() => {
         estadisticas
     };
 })();
+
+// Backwards-compat alias
+const HuellitasService = PawsMatchService;

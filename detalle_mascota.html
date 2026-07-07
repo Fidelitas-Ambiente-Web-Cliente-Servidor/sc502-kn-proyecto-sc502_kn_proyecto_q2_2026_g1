@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de Mascota | PawMatch</title>
+    <title>Detalle de Mascota | PawsMatch</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -11,31 +11,46 @@
 
 <body>
 
-<main class="detail-page">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🐾</span>
+                <div>
+                    <span>PawsMatch</span>
+                    <small>Un hogar para siempre 💛</small>
+                </div>
+            </div>
 
-    <header class="detail-header">
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="catalogo.html" class="active">Mascotas</a></li>
+                <li><a href="como-adoptar.html">Cómo adoptar</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
 
-        <div class="catalog-logo">
-            <div class="logo-icon">🐾</div>
+            <div class="nav-buttons">
+                <a href="admin-dashboard.html" class="btn-admin">Admin</a>
+                <a href="login.html" class="btn-login">Iniciar sesión</a>
+                <a href="registro.html" class="btn-registro">Registrarse</a>
+            </div>
 
-            <div>
-                <h2>PawMatch</h2>
-                <span>Detalle de la mascota</span>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
+    </nav>
 
-        <a href="catalogo.html" class="logout-btn">
-            ← Volver
-        </a>
-
-    </header>
+<main class="detail-page">
 
     <section class="detail-container">
 
         <div class="detail-image">
 
-            <img src="https://i.pinimg.com/1200x/f4/51/b5/f451b5f4958f1ca9fa5d4f836cb4dcbf.jpg">
-
+            <img src="https://i.pinimg.com/1200x/f4/51/b5/f451b5f4958f1ca9fa5d4f836cb4dcbf.jpg" alt="Max">
 
         </div>
 
@@ -80,15 +95,13 @@
             <div class="detail-features">
 
                 <span>Sociable</span>
-
                 <span>Cariñoso</span>
-
                 <span>Tranquilo</span>
-
                 <span>Ideal para familias</span>
 
             </div>
-                        <div class="detail-actions">
+
+            <div class="detail-actions">
 
                 <a href="#" class="adopt-btn">
                     Solicitar adopción

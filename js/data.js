@@ -1,11 +1,11 @@
 // =====================================================
-// PawMatch - Base de datos simulada frontend
+// PawsMatch - Base de datos simulada frontend
 // =====================================================
 // Este archivo centraliza los datos demo de todos los módulos.
 // En Spring Boot, esta fuente se reemplaza por endpoints REST o Thymeleaf.
 
 (function () {
-    const STORAGE_KEY = 'pawmatchDataV1';
+    const STORAGE_KEY = 'pawsmatchDataV1';
 
     const datosIniciales = {
         roles: [
@@ -73,10 +73,10 @@
         }
     }
 
-    window.HuellitasDB = cargarDatos();
-    window.HuellitasStorage = {
+    window.PawsMatchDB = cargarDatos();
+    window.PawsMatchStorage = {
         key: STORAGE_KEY,
-        save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(window.HuellitasDB)); },
-        reset() { localStorage.removeItem(STORAGE_KEY); window.HuellitasDB = structuredClone(datosIniciales); this.save(); }
+        save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(window.PawsMatchDB)); },
+        reset() { localStorage.removeItem(STORAGE_KEY); window.PawsMatchDB = structuredClone(datosIniciales); this.save(); }
     };
 })();

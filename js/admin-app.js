@@ -1,5 +1,5 @@
 // =====================================================
-// PawMatch - Renderizado de módulos admin
+// PawsMatch - Renderizado de módulos admin
 // =====================================================
 
 function kpi(id, valor) {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawMatch - Adopción responsable</title>
+    <title>PawsMatch - Adopción responsable</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -19,7 +19,7 @@
             <div class="logo">
                 <span class="logo-icon">🐾</span>
                 <div>
-                    <span>PawMatch</span>
+                    <span>PawsMatch</span>
                     <small>Un hogar para siempre 💛</small>
                 </div>
             </div>
@@ -28,8 +28,8 @@
                 <li><a href="index.html" class="active">Inicio</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
                 <li><a href="catalogo.html">Mascotas</a></li>
-                <li><a href="#como-adoptar">Cómo adoptar</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="como-adoptar.html">Cómo adoptar</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
             </ul>
 
             <div class="nav-buttons">
@@ -116,7 +116,7 @@
         </div>
     </section>
 
-    <!-- MASCOTAS DESTACADAS -->
+    <!-- MASCOTAS DESTACADAS — CAROUSEL -->
     <section class="featured-pets">
         <div>
             <div class="section-header">
@@ -124,55 +124,104 @@
                 <a href="catalogo.html" class="ver-todos">Ver todas →</a>
             </div>
 
-            <div class="pets-grid">
-                <div class="pet-card">
-                    <div class="pet-image">
-                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80" alt="Max">
-                        <span class="pet-badge">Perro</span>
-                        <button class="btn-favorite">♡</button>
-                    </div>
-                    <div class="pet-info">
-                        <h3>Max ♂</h3>
-                        <p class="pet-details">2 años • Mediano • Vacunado</p>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-prev" id="carouselPrev" aria-label="Anterior">&#8249;</button>
+
+                <div class="carousel-viewport" id="carouselViewport">
+                    <div class="carousel-track" id="carouselTrack">
+
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80" alt="Max">
+                                <span class="pet-badge">Perro</span>
+                                <button class="btn-favorite">♡</button>
+                            </div>
+                            <div class="pet-info">
+                                <h3>Max ♂</h3>
+                                <p class="pet-details">2 años • Mediano • Vacunado</p>
+                            </div>
+                        </div>
+
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=500&q=80" alt="Luna">
+                                <span class="pet-badge badge-pink">Gato</span>
+                                <button class="btn-favorite">♡</button>
+                            </div>
+                            <div class="pet-info">
+                                <h3>Luna ♀</h3>
+                                <p class="pet-details">4 meses • Hembra • Esterilizada</p>
+                            </div>
+                        </div>
+
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=500&q=80" alt="Rocky">
+                                <span class="pet-badge">Perro</span>
+                                <button class="btn-favorite">♡</button>
+                            </div>
+                            <div class="pet-info">
+                                <h3>Rocky ♂</h3>
+                                <p class="pet-details">1 año • Grande • Vacunado</p>
+                            </div>
+                        </div>
+
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?auto=format&fit=crop&w=500&q=80" alt="Milo">
+                                <span class="pet-badge badge-pink">Gato</span>
+                                <button class="btn-favorite">♡</button>
+                            </div>
+                            <div class="pet-info">
+                                <h3>Milo ♂</h3>
+                                <p class="pet-details">3 meses • Macho • Desparasitado</p>
+                            </div>
+                        </div>
+
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?auto=format&fit=crop&w=500&q=80" alt="Benny">
+                                <span class="pet-badge">Perro</span>
+                                <button class="btn-favorite">♡</button>
+                            </div>
+                            <div class="pet-info">
+                                <h3>Benny ♂</h3>
+                                <p class="pet-details">3 años • Grande • Esterilizado</p>
+                            </div>
+                        </div>
+
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80" alt="Cleo">
+                                <span class="pet-badge badge-pink">Gato</span>
+                                <button class="btn-favorite">♡</button>
+                            </div>
+                            <div class="pet-info">
+                                <h3>Cleo ♀</h3>
+                                <p class="pet-details">1 año • Pequeña • Vacunada</p>
+                            </div>
+                        </div>
+
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=500&q=80" alt="Duke">
+                                <span class="pet-badge">Perro</span>
+                                <button class="btn-favorite">♡</button>
+                            </div>
+                            <div class="pet-info">
+                                <h3>Duke ♂</h3>
+                                <p class="pet-details">5 años • Grande • Vacunado</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="pet-card">
-                    <div class="pet-image">
-                        <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=500&q=80" alt="Luna">
-                        <span class="pet-badge badge-pink">Gato</span>
-                        <button class="btn-favorite">♡</button>
-                    </div>
-                    <div class="pet-info">
-                        <h3>Luna ♀</h3>
-                        <p class="pet-details">4 meses • Hembra • Esterilizada</p>
-                    </div>
-                </div>
-
-                <div class="pet-card">
-                    <div class="pet-image">
-                        <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=500&q=80" alt="Rocky">
-                        <span class="pet-badge">Perro</span>
-                        <button class="btn-favorite">♡</button>
-                    </div>
-                    <div class="pet-info">
-                        <h3>Rocky ♂</h3>
-                        <p class="pet-details">1 año • Grande • Vacunado</p>
-                    </div>
-                </div>
-
-                <div class="pet-card">
-                    <div class="pet-image">
-                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?auto=format&fit=crop&w=500&q=80" alt="Milo">
-                        <span class="pet-badge badge-pink">Gato</span>
-                        <button class="btn-favorite">♡</button>
-                    </div>
-                    <div class="pet-info">
-                        <h3>Milo ♂</h3>
-                        <p class="pet-details">3 meses • Macho • Desparasitado</p>
-                    </div>
-                </div>
+                <button class="carousel-btn carousel-btn-next" id="carouselNext" aria-label="Siguiente">&#8250;</button>
             </div>
+
+            <!-- Dots -->
+            <div class="carousel-dots" id="carouselDots"></div>
         </div>
     </section>
 
@@ -213,7 +262,7 @@
     <footer class="footer" id="contacto">
         <div class="footer-content">
             <div class="footer-section footer-brand">
-                <h4>🐾 PawMatch</h4>
+                <h4>🐾 PawsMatch</h4>
                 <p>Un hogar para siempre 💛</p>
             </div>
 
@@ -223,7 +272,7 @@
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="nosotros.html">Nosotros</a></li>
                     <li><a href="catalogo.html">Mascotas</a></li>
-                    <li><a href="#como-adoptar">Cómo adoptar</a></li>
+                    <li><a href="como-adoptar.html">Cómo adoptar</a></li>
                 </ul>
             </div>
 
@@ -247,7 +296,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2026 PawMatch. Todos los derechos reservados. 🐾</p>
+            <p>&copy; 2026 PawsMatch. Todos los derechos reservados. 🐾</p>
         </div>
     </footer>
 

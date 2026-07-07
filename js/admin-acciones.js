@@ -1,5 +1,5 @@
 // =========================================================
-// Huellitas de Amor - Acciones demo para módulos admin
+// PawsMatch - Acciones demo para módulos admin
 // Funciones: crear registros en tabla, exportar CSV y acciones básicas.
 // Nota: Esto es frontend temporal. Luego se reemplaza por Spring Boot.
 // =========================================================
