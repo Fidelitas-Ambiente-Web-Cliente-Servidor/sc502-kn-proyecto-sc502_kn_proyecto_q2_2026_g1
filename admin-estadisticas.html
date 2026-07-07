@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Estadísticas | PawMatch</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/estilos.css"><link rel="stylesheet" href="css/responsive.css"><link rel="stylesheet" href="css/admin.css"></head><body class="admin-body" data-page="estadisticas"><nav class="navbar">
+  <div class="nav-container">
+    <a class="logo" href="index.html">
+      <span class="logo-icon">🐾</span>
+      <div><span>PawMatch</span><small>Panel administrativo</small></div>
+    </a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html">Inicio público</a></li>
+      <li><a href="admin-dashboard.html">Admin</a></li>
+      <li><a href="admin-reportes.html">Reportes</a></li>
+      <li><a href="admin-configuracion.html">Configuración</a></li>
+    </ul>
+    <div class="nav-buttons"><a href="login.html" class="btn-login">Cerrar sesión</a></div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav><div class="admin-layout"><aside class="admin-sidebar"><div class="sidebar-title">Administrador General</div><ul class="sidebar-menu"><li><a class="" href="admin-dashboard.html"><span>📊</span>Dashboard</a></li>
+<li><a class="" href="admin-usuarios.html"><span>👥</span>Usuarios</a></li>
+<li><a class="" href="admin-refugios.html"><span>🏠</span>Refugios</a></li>
+<li><a class="" href="admin-roles.html"><span>🛡️</span>Roles</a></li>
+<li><a class="active" href="admin-estadisticas.html"><span>📈</span>Estadísticas</a></li>
+<li><a class="" href="admin-reportes.html"><span>📑</span>Reportes</a></li>
+<li><a class="" href="admin-bitacora.html"><span>📋</span>Bitácora</a></li>
+<li><a class="" href="admin-notificaciones.html"><span>🔔</span>Notificaciones</a></li>
+<li><a class="" href="admin-configuracion.html"><span>⚙️</span>Configuración</a></li></ul></aside><main class="admin-main"><div class="admin-header"><div><h1>Estadísticas</h1><p>Indicadores calculados desde la data centralizada.</p></div><div class="admin-actions"><button class="btn btn-secondary" onclick="location.reload()">🔄 Actualizar</button></div></div><div class="kpi-grid"><div class="kpi-card"><div><p>Usuarios</p><h3 id="statUsuarios">0</h3></div><div class="kpi-icon">👥</div></div><div class="kpi-card"><div><p>Refugios</p><h3 id="statRefugios">0</h3></div><div class="kpi-icon">🏠</div></div><div class="kpi-card"><div><p>Mascotas</p><h3 id="statMascotas">0</h3></div><div class="kpi-icon">🐾</div></div><div class="kpi-card"><div><p>Solicitudes pendientes</p><h3 id="statSolicitudes">0</h3></div><div class="kpi-icon">📩</div></div></div><div class="chart-grid"><section class="admin-card"><h2>Resumen operativo</h2><div class="table-responsive"><table class="admin-table"><tbody id="estadisticasResumen"></tbody></table></div></section><section class="admin-card"><h2>Gráficas</h2><div class="chart-box">Las gráficas con Chart.js se pueden conectar aquí usando los mismos datos de js/data.js.</div></section></div></main></div><footer class="footer" id="contacto"><div class="footer-content"><div class="footer-section footer-brand"><h4>🐾 PawMatch</h4><p>Panel administrativo del sistema.</p></div><div class="footer-section"><h4>Módulos</h4><ul><li><a href="admin-usuarios.html">Usuarios</a></li><li><a href="admin-refugios.html">Refugios</a></li><li><a href="admin-reportes.html">Reportes</a></li></ul></div><div class="footer-section"><h4>Sistema</h4><ul><li><a href="admin-bitacora.html">Bitácora</a></li><li><a href="admin-notificaciones.html">Notificaciones</a></li><li><a href="admin-configuracion.html">Configuración</a></li></ul></div><div class="footer-section"><h4>Soporte</h4><ul><li>Email: soporte@pawmatch.com</li><li>Lun - Vie: 8:00 am - 5:00 pm</li></ul></div></div><div class="footer-bottom"><p>&copy; 2026 PawMatch. Administración general.</p></div></footer><script src="js/main.js"></script><script src="js/data.js"></script><script src="js/services.js"></script><script src="js/utils.js"></script><script src="js/admin-app.js"></script></body></html>

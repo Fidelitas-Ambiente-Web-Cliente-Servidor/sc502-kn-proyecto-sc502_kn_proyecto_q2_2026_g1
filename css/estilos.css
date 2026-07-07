@@ -1068,3 +1068,35 @@ img {
         font-size:30px;
     }
 }
+/* Botón Admin agregado al navbar público */
+.btn-admin {
+    padding: 0.75rem 1.3rem;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+    background: var(--dark);
+    color: var(--white);
+    box-shadow: var(--shadow-soft);
+}
+.btn-admin:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+@media (max-width: 1000px) {
+    .nav-menu.open {
+        display: flex;
+        position: absolute;
+        top: 78px;
+        left: 1rem;
+        right: 1rem;
+        background: var(--white);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        border-radius: 22px;
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        z-index: 1100;
+    }
+}
