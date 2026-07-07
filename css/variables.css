@@ -1,0 +1,16 @@
+/* Variables globales - Huellitas de Amor */
+:root {
+    --color-primary: #6c5ce7;
+    --color-secondary: #ff6b6b;
+    --color-success: #00b894;
+    --color-warning: #fdcb6e;
+    --color-danger: #d63031;
+    --color-info: #74b9ff;
+    --color-dark: #2d3436;
+    --color-light: #f8f9fa;
+    --color-muted: #6c757d;
+    --border-radius: 14px;
+    --transition-base: all .2s ease;
+    --shadow-sm: 0 .25rem .75rem rgba(0, 0, 0, .06);
+    --shadow-md: 0 .5rem 1rem rgba(0, 0, 0, .08);
+}
