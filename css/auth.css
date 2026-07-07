@@ -1,0 +1,257 @@
+/* =====================================================
+   PawsMatch — Auth pages: login, registro, recuperar contraseña
+   ===================================================== */
+
+/* ── Login ── */
+.auth-app {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background:
+        radial-gradient(circle at top left, #ede9fe 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #fce7f3 0%, transparent 30%),
+        #fbfaff;
+}
+
+.auth-shell {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 680px;
+    background: #fff;
+    border-radius: 35px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .08);
+}
+
+.auth-brand-panel {
+    background: linear-gradient(145deg, #6D28D9, #8B5CF6);
+    color: #fff;
+    padding: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.auth-logo { display: flex; align-items: center; gap: 15px; }
+
+.logo-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+}
+
+.logo-text h2 { margin: 0; font-size: 28px; }
+.logo-text span { opacity: .85; font-size: 14px; }
+
+.auth-brand-content { margin: 40px 0; }
+
+.auth-brand-content h1 {
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.auth-brand-content p { line-height: 1.8; opacity: .9; max-width: 420px; }
+
+.auth-image { display: flex; justify-content: center; }
+
+.auth-image img {
+    width: 100%;
+    max-width: 360px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 28px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .20);
+}
+
+.auth-form-panel {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-form-header h2 { font-size: 38px; margin-bottom: 8px; color: #111827; }
+.auth-form-header p  { color: #6b7280; margin-bottom: 35px; }
+
+.auth-form { padding: 0; }
+
+.form-group { margin-bottom: 22px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+
+.form-group input {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    transition: .3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, .15);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0;
+    font-size: 14px;
+}
+
+.form-options a { color: #6D28D9; font-weight: 600; }
+
+.auth-btn { width: 100%; margin-top: 10px; }
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0 20px;
+    color: #999;
+}
+
+.auth-divider::before,
+.auth-divider::after { content: ""; flex: 1; height: 1px; background: #ddd; }
+
+.auth-divider span { margin: 0 15px; }
+
+.auth-link { text-align: center; color: #666; }
+.auth-link a { color: #6D28D9; font-weight: 700; }
+
+.back-home { margin-top: 30px; text-align: center; }
+.back-home a { color: #6D28D9; font-weight: 600; }
+
+/* ── Register ── */
+.register-app {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background:
+        radial-gradient(circle at top left, #ede9fe 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #fce7f3 0%, transparent 30%),
+        #fbfaff;
+}
+
+.register-shell {
+    width: 100%;
+    max-width: 1250px;
+    min-height: 720px;
+    background: #fff;
+    border-radius: 35px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, .09);
+}
+
+.register-side {
+    background: linear-gradient(145deg, rgba(109,40,217,.92), rgba(139,92,246,.88)),
+                url("https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=80");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.register-brand { display: flex; align-items: center; gap: 15px; }
+
+.brand-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.register-brand h2 { font-size: 32px; margin: 0; }
+.register-brand p  { margin: 0; opacity: .9; }
+
+.register-text h1 { font-size: 46px; line-height: 1.15; margin-bottom: 20px; }
+.register-text p  { max-width: 450px; line-height: 1.8; font-size: 17px; opacity: .95; }
+
+.register-animal-card {
+    width: 260px;
+    background: rgba(255, 255, 255, .18);
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 25px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.register-animal-card span { font-size: 32px; }
+.register-animal-card p   { margin-top: 10px; line-height: 1.6; }
+
+.register-form-area {
+    padding: 55px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.register-form-header h1 { font-size: 42px; color: #111827; margin-bottom: 8px; }
+.register-form-header p  { color: #6b7280; margin-bottom: 35px; }
+
+.register-form .form-group { margin-bottom: 20px; }
+.register-form .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #111827; }
+
+.register-form .form-group input {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    transition: .3s;
+}
+
+.register-form .form-group input:focus {
+    outline: none;
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, .15);
+}
+
+.register-form-area .auth-btn { width: 100%; margin-top: 10px; }
+
+/* Auth responsive */
+@media (max-width: 900px) {
+    .auth-shell, .register-shell { grid-template-columns: 1fr; }
+    .auth-brand-panel { padding: 35px; }
+    .auth-form-panel  { padding: 35px; }
+    .auth-brand-content h1 { font-size: 36px; }
+    .auth-image { margin-top: 30px; }
+    .register-side { min-height: 420px; padding: 35px; }
+    .register-form-area { padding: 35px; }
+    .register-text h1 { font-size: 36px; }
+}
+
+@media (max-width: 600px) {
+    .auth-app, .register-app { padding: 20px; }
+    .auth-form-panel { padding: 25px; }
+    .auth-brand-content h1 { font-size: 30px; }
+    .form-options { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .register-form-area { padding: 28px; }
+    .register-form-header h1 { font-size: 32px; }
+    .register-text h1 { font-size: 30px; }
+}

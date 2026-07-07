@@ -104,6 +104,3 @@ const PawsMatchUtils = (() => {
 
     return { normalizar, badgeEstado, badgeRol, exportarCSV, configurarTabla, cerrarModal };
 })();
-
-// Backwards-compat alias
-const HuellitasUtils = PawsMatchUtils;

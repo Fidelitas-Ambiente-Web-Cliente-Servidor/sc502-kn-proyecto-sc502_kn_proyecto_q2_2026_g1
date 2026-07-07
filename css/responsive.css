@@ -1,1 +1,4 @@
-/* Responsive adicional del proyecto. Los estilos principales están en estilos.css y admin.css. */
+/* css/responsive.css — kept for backwards compatibility with HTML link tags.
+   All responsive styles now live in their respective module files:
+   navbar.css, home.css, auth.css, catalog.css, carousel.css
+*/

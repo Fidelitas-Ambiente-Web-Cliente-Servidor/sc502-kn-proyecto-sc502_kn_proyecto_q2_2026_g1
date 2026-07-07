@@ -1,0 +1,83 @@
+/* =====================================================
+   PawsMatch — Pet Carousel (index.html featured section)
+   ===================================================== */
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.carousel-viewport { flex: 1; overflow: hidden; }
+
+.carousel-track {
+    display: flex;
+    gap: 1.7rem;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+/* Each card takes exactly 1/4 of the viewport minus the gaps */
+.carousel-track .pet-card {
+    flex: 0 0 calc(25% - 1.28rem);
+    min-width: 0;
+}
+
+.carousel-btn {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--white);
+    color: var(--primary);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: 0.2s ease;
+    user-select: none;
+}
+
+.carousel-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+    transform: scale(1.08);
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.4rem;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: var(--primary);
+    transform: scale(1.25);
+}
+
+@media (max-width: 1000px) {
+    .carousel-track .pet-card { flex: 0 0 calc(50% - 0.85rem); }
+}
+
+@media (max-width: 600px) {
+    .carousel-track .pet-card { flex: 0 0 100%; }
+    .carousel-btn { width: 36px; height: 36px; font-size: 1.4rem; }
+}

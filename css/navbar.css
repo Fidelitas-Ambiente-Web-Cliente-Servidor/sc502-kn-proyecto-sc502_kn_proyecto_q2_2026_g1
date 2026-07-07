@@ -1,40 +1,188 @@
-/* Navbar y footer compartidos */
+/* =====================================================
+   PawsMatch — Navbar & Footer (shared across all pages)
+   ===================================================== */
+
 .navbar {
-    background: #ffffff;
-    box-shadow: var(--shadow-sm);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.navbar-brand {
-    color: var(--color-primary);
-    font-weight: 700;
+.nav-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
 }
 
-.navbar-brand:hover,
-.navbar-brand:focus {
-    color: var(--color-primary);
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 800;
+    color: var(--dark);
 }
 
-.navbar .nav-link {
-    color: var(--color-dark);
+.logo-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--primary), #a78bfa);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.logo div {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logo small {
+    font-size: 0.72rem;
+    color: var(--muted);
     font-weight: 500;
+    margin-top: 0.2rem;
 }
 
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
-    color: var(--color-primary);
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+    align-items: center;
 }
 
-.navbar-toggler {
-    border: 0;
+.nav-menu a {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: 0.3s ease;
 }
 
-.dropdown-menu {
-    border: 0;
+.nav-menu a:hover,
+.nav-menu a.active { color: var(--primary); }
+
+.nav-buttons {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.btn-admin {
+    padding: 0.55rem 1rem;
     border-radius: 12px;
-    box-shadow: var(--shadow-md);
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    transition: 0.2s ease;
 }
 
+.btn-admin:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-login,
+.btn-registro {
+    padding: 0.75rem 1.3rem;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+}
+
+.btn-login {
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+    background: var(--white);
+}
+
+.btn-login:hover { background: var(--primary-soft); }
+
+.btn-registro {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-registro:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 26px;
+    height: 3px;
+    background: var(--dark);
+    border-radius: 10px;
+}
+
+/* Footer */
 .footer {
-    background-color: #ffffff;
-    border-top: 1px solid rgba(0, 0, 0, .08);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: var(--white);
+    padding: 4rem 2rem 1.5rem;
+    border-radius: 60px 60px 0 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.footer-section h4 { margin-bottom: 1rem; color: var(--white); }
+
+.footer-section p,
+.footer-section li,
+.footer-section a { color: #ede9fe; font-size: 0.92rem; }
+
+.footer-section ul { list-style: none; }
+.footer-section li { margin-bottom: 0.55rem; }
+.footer-section a:hover { color: var(--accent); }
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+    color: #ede9fe;
+    font-size: 0.9rem;
+}
+
+/* Navbar responsive */
+@media (max-width: 1000px) {
+    .nav-menu,
+    .nav-buttons { display: none; }
+    .hamburger { display: flex; }
+    .footer-content { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 650px) {
+    .nav-container { padding: 1rem; }
+    .footer { border-radius: 35px 35px 0 0; }
+    .footer-content { grid-template-columns: 1fr; }
 }

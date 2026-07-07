@@ -191,6 +191,3 @@ const PawsMatchService = (() => {
         estadisticas
     };
 })();
-
-// Backwards-compat alias
-const HuellitasService = PawsMatchService;

@@ -8,17 +8,17 @@ function kpi(id, valor) {
 }
 
 function opcionesRoles() {
-    return HuellitasService.roles().map(r => `<option value="${r.id}">${r.nombre}</option>`).join('');
+    return PawsMatchService.roles().map(r => `<option value="${r.id}">${r.nombre}</option>`).join('');
 }
 
 function opcionesUsuariosRefugio() {
-    return HuellitasService.usuarios()
+    return PawsMatchService.usuarios()
         .filter(u => u.rol === 'REFUGIO')
         .map(u => `<option value="${u.id}">${u.nombre}</option>`).join('');
 }
 
 function initDashboard() {
-    const e = HuellitasService.estadisticas();
+    const e = PawsMatchService.estadisticas();
     kpi('totalUsers', e.totalUsuarios);
     kpi('totalShelters', e.totalRefugios);
     kpi('monthlyAdoptions', e.adopcionesAprobadas);
@@ -26,18 +26,18 @@ function initDashboard() {
 
     const recent = document.getElementById('recentRequests');
     if (recent) {
-        recent.innerHTML = HuellitasService.solicitudes().slice(0, 4).map(s => `
+        recent.innerHTML = PawsMatchService.solicitudes().slice(0, 4).map(s => `
             <div class="list-group-item">
                 <div class="d-flex justify-content-between align-items-center">
                     <div><h6 class="mb-1">${s.adoptante} solicita a ${s.mascota}</h6><small class="text-muted">${s.fecha}</small></div>
-                    <span class="badge ${HuellitasUtils.badgeEstado(s.estado)}">${s.estado}</span>
+                    <span class="badge ${PawsMatchUtils.badgeEstado(s.estado)}">${s.estado}</span>
                 </div>
             </div>`).join('');
     }
 
     const alerts = document.getElementById('systemAlerts');
     if (alerts) {
-        alerts.innerHTML = HuellitasService.notificaciones().slice(0, 4).map(n => `
+        alerts.innerHTML = PawsMatchService.notificaciones().slice(0, 4).map(n => `
             <div class="list-group-item">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-bell text-primary me-3 fa-lg"></i>
@@ -48,7 +48,7 @@ function initDashboard() {
 }
 
 function initUsuarios() {
-    const e = HuellitasService.estadisticas();
+    const e = PawsMatchService.estadisticas();
     kpi('usuariosTotal', e.totalUsuarios);
     kpi('usuariosActivos', e.usuariosActivos);
     kpi('usuariosPendientes', e.usuariosPendientes);
@@ -57,8 +57,8 @@ function initUsuarios() {
     const rolSelect = document.getElementById('usuarioRol');
     if (rolSelect) rolSelect.innerHTML = opcionesRoles();
 
-    const tabla = HuellitasUtils.configurarTabla({
-        datos: HuellitasService.usuarios,
+    const tabla = PawsMatchUtils.configurarTabla({
+        datos: PawsMatchService.usuarios,
         tbody: document.getElementById('usuariosTbody'),
         buscarInput: document.getElementById('buscarUsuario'),
         contador: document.getElementById('contadorUsuarios'),
@@ -69,9 +69,9 @@ function initUsuarios() {
         renderFila: u => `
             <tr>
                 <td><strong>${u.nombre}</strong><br><small class="text-muted">${u.correo}</small></td>
-                <td><span class="badge ${HuellitasUtils.badgeRol(u.rol)}">${u.rol}</span></td>
+                <td><span class="badge ${PawsMatchUtils.badgeRol(u.rol)}">${u.rol}</span></td>
                 <td>${u.fechaRegistro}</td>
-                <td><span class="badge ${HuellitasUtils.badgeEstado(u.estado)}">${u.estado}</span></td>
+                <td><span class="badge ${PawsMatchUtils.badgeEstado(u.estado)}">${u.estado}</span></td>
                 <td class="text-end">
                     <button class="btn btn-sm btn-outline-primary me-1" title="Ver"><i class="fas fa-eye"></i></button>
                     <button class="btn btn-sm btn-outline-danger" data-action="bloquear-usuario" data-id="${u.id}" title="Bloquear"><i class="fas fa-ban"></i></button>
@@ -81,32 +81,32 @@ function initUsuarios() {
 
     document.getElementById('formUsuario')?.addEventListener('submit', e => {
         e.preventDefault();
-        HuellitasService.crearUsuario({
+        PawsMatchService.crearUsuario({
             nombre: document.getElementById('usuarioNombre').value,
             correo: document.getElementById('usuarioCorreo').value,
             rolId: document.getElementById('usuarioRol').value,
             estado: document.getElementById('usuarioEstado').value
         });
         e.target.reset();
-        HuellitasUtils.cerrarModal('usuarioModal');
+        PawsMatchUtils.cerrarModal('usuarioModal');
         initUsuarios();
     }, { once: true });
 
-    document.getElementById('btnExportarUsuarios')?.addEventListener('click', () => HuellitasUtils.exportarCSV('usuarios.csv', HuellitasService.usuarios()));
+    document.getElementById('btnExportarUsuarios')?.addEventListener('click', () => PawsMatchUtils.exportarCSV('usuarios.csv', PawsMatchService.usuarios()));
 }
 
 function initRefugios() {
-    const e = HuellitasService.estadisticas();
+    const e = PawsMatchService.estadisticas();
     kpi('refugiosTotal', e.totalRefugios);
     kpi('refugiosAprobados', e.refugiosAprobados);
     kpi('refugiosPendientes', e.refugiosPendientes);
-    kpi('refugiosSuspendidos', HuellitasService.refugios().filter(r => r.estado === 'Suspendido').length);
+    kpi('refugiosSuspendidos', PawsMatchService.refugios().filter(r => r.estado === 'Suspendido').length);
 
     const adminSelect = document.getElementById('refugioAdmin');
     if (adminSelect) adminSelect.innerHTML = '<option value="">Sin asignar</option>' + opcionesUsuariosRefugio();
 
-    const tabla = HuellitasUtils.configurarTabla({
-        datos: HuellitasService.refugios,
+    const tabla = PawsMatchUtils.configurarTabla({
+        datos: PawsMatchService.refugios,
         tbody: document.getElementById('refugiosTbody'),
         buscarInput: document.getElementById('buscarRefugio'),
         contador: document.getElementById('contadorRefugios'),
@@ -120,7 +120,7 @@ function initRefugios() {
                 <td>${r.administrador}</td>
                 <td>${r.provincia}</td>
                 <td>${r.telefono}</td>
-                <td><span class="badge ${HuellitasUtils.badgeEstado(r.estado)}">${r.estado}</span></td>
+                <td><span class="badge ${PawsMatchUtils.badgeEstado(r.estado)}">${r.estado}</span></td>
                 <td class="text-end">
                     <button class="btn btn-sm btn-outline-success me-1" data-action="aprobar-refugio" data-id="${r.id}" title="Aprobar"><i class="fas fa-check"></i></button>
                     <button class="btn btn-sm btn-outline-danger" data-action="suspender-refugio" data-id="${r.id}" title="Suspender"><i class="fas fa-ban"></i></button>
@@ -130,7 +130,7 @@ function initRefugios() {
 
     document.getElementById('formRefugio')?.addEventListener('submit', e => {
         e.preventDefault();
-        HuellitasService.crearRefugio({
+        PawsMatchService.crearRefugio({
             nombre: document.getElementById('refugioNombre').value,
             correo: document.getElementById('refugioCorreo').value,
             telefono: document.getElementById('refugioTelefono').value,
@@ -139,49 +139,49 @@ function initRefugios() {
             estado: document.getElementById('refugioEstado').value
         });
         e.target.reset();
-        HuellitasUtils.cerrarModal('refugioModal');
+        PawsMatchUtils.cerrarModal('refugioModal');
         initRefugios();
     }, { once: true });
 
-    document.getElementById('btnExportarRefugios')?.addEventListener('click', () => HuellitasUtils.exportarCSV('refugios.csv', HuellitasService.refugios()));
+    document.getElementById('btnExportarRefugios')?.addEventListener('click', () => PawsMatchUtils.exportarCSV('refugios.csv', PawsMatchService.refugios()));
 }
 
 function initRoles() {
-    const roles = HuellitasService.conteoUsuariosPorRol();
+    const roles = PawsMatchService.conteoUsuariosPorRol();
     kpi('rolesTotal', roles.length);
     kpi('rolesActivos', roles.filter(r => r.estado === 'Activo').length);
-    kpi('rolesUsuarios', HuellitasService.usuarios().length);
+    kpi('rolesUsuarios', PawsMatchService.usuarios().length);
     kpi('rolesAdmin', roles.find(r => r.nombre === 'ADMIN_GENERAL')?.totalUsuarios || 0);
 
     const tbody = document.getElementById('rolesTbody');
     if (tbody) tbody.innerHTML = roles.map(r => `
         <tr>
-            <td><span class="badge ${HuellitasUtils.badgeRol(r.nombre)}">${r.nombre}</span></td>
+            <td><span class="badge ${PawsMatchUtils.badgeRol(r.nombre)}">${r.nombre}</span></td>
             <td>${r.descripcion}</td>
             <td>${r.permisos.join(', ')}</td>
             <td>${r.totalUsuarios}</td>
-            <td><span class="badge ${HuellitasUtils.badgeEstado(r.estado)}">${r.estado}</span></td>
+            <td><span class="badge ${PawsMatchUtils.badgeEstado(r.estado)}">${r.estado}</span></td>
             <td class="text-end"><button class="btn btn-sm btn-outline-warning" title="Editar"><i class="fas fa-pen"></i></button></td>
         </tr>`).join('');
 
     document.getElementById('formRol')?.addEventListener('submit', e => {
         e.preventDefault();
-        HuellitasService.crearRol({
+        PawsMatchService.crearRol({
             nombre: document.getElementById('rolNombre').value,
             descripcion: document.getElementById('rolDescripcion').value,
             estado: document.getElementById('rolEstado').value,
             permisos: document.getElementById('rolPermisos').value.split(',').map(p => p.trim()).filter(Boolean)
         });
         e.target.reset();
-        HuellitasUtils.cerrarModal('rolModal');
+        PawsMatchUtils.cerrarModal('rolModal');
         initRoles();
     }, { once: true });
 
-    document.getElementById('btnExportarRoles')?.addEventListener('click', () => HuellitasUtils.exportarCSV('roles.csv', HuellitasService.conteoUsuariosPorRol()));
+    document.getElementById('btnExportarRoles')?.addEventListener('click', () => PawsMatchUtils.exportarCSV('roles.csv', PawsMatchService.conteoUsuariosPorRol()));
 }
 
 function initEstadisticas() {
-    const e = HuellitasService.estadisticas();
+    const e = PawsMatchService.estadisticas();
     kpi('statUsuarios', e.totalUsuarios);
     kpi('statRefugios', e.totalRefugios);
     kpi('statMascotas', e.totalMascotas);
@@ -200,21 +200,21 @@ function initReportes() {
         btn.addEventListener('click', () => {
             const tipo = btn.dataset.reporte;
             const mapa = {
-                usuarios: HuellitasService.usuarios(),
-                refugios: HuellitasService.refugios(),
-                roles: HuellitasService.conteoUsuariosPorRol(),
-                bitacora: HuellitasService.bitacora(),
-                notificaciones: HuellitasService.notificaciones()
+                usuarios: PawsMatchService.usuarios(),
+                refugios: PawsMatchService.refugios(),
+                roles: PawsMatchService.conteoUsuariosPorRol(),
+                bitacora: PawsMatchService.bitacora(),
+                notificaciones: PawsMatchService.notificaciones()
             };
-            HuellitasUtils.exportarCSV(`${tipo}.csv`, mapa[tipo] || []);
+            PawsMatchUtils.exportarCSV(`${tipo}.csv`, mapa[tipo] || []);
         });
     });
 }
 
 function initBitacora() {
     const tbody = document.getElementById('bitacoraTbody');
-    HuellitasUtils.configurarTabla({
-        datos: HuellitasService.bitacora,
+    PawsMatchUtils.configurarTabla({
+        datos: PawsMatchService.bitacora,
         tbody,
         buscarInput: document.getElementById('buscarBitacora'),
         contador: document.getElementById('contadorBitacora'),
@@ -228,7 +228,7 @@ function initBitacora() {
 
 function initNotificaciones() {
     const tbody = document.getElementById('notificacionesTbody');
-    if (tbody) tbody.innerHTML = HuellitasService.notificaciones().map(n => `
+    if (tbody) tbody.innerHTML = PawsMatchService.notificaciones().map(n => `
         <tr>
             <td><strong>${n.titulo}</strong><br><small class="text-muted">${n.mensaje}</small></td>
             <td><span class="badge bg-${n.tipo === 'warning' ? 'warning text-dark' : n.tipo}">${n.tipo}</span></td>
@@ -239,19 +239,19 @@ function initNotificaciones() {
 
     document.getElementById('formNotificacion')?.addEventListener('submit', e => {
         e.preventDefault();
-        HuellitasService.crearNotificacion({
+        PawsMatchService.crearNotificacion({
             titulo: document.getElementById('notificacionTitulo').value,
             mensaje: document.getElementById('notificacionMensaje').value,
             tipo: document.getElementById('notificacionTipo').value
         });
         e.target.reset();
-        HuellitasUtils.cerrarModal('notificacionModal');
+        PawsMatchUtils.cerrarModal('notificacionModal');
         initNotificaciones();
     }, { once: true });
 }
 
 function initConfiguracion() {
-    const c = HuellitasService.configuracion();
+    const c = PawsMatchService.configuracion();
     Object.entries(c).forEach(([key, value]) => {
         const input = document.getElementById(key);
         if (!input) return;
@@ -260,7 +260,7 @@ function initConfiguracion() {
     });
     document.getElementById('formConfiguracion')?.addEventListener('submit', e => {
         e.preventDefault();
-        HuellitasService.guardarConfiguracion({
+        PawsMatchService.guardarConfiguracion({
             nombreSistema: document.getElementById('nombreSistema').value,
             correoSoporte: document.getElementById('correoSoporte').value,
             tiempoSesionMinutos: Number(document.getElementById('tiempoSesionMinutos').value),
@@ -275,10 +275,10 @@ document.addEventListener('click', e => {
     const btn = e.target.closest('[data-action]');
     if (!btn) return;
     const id = btn.dataset.id;
-    if (btn.dataset.action === 'bloquear-usuario') HuellitasService.actualizarEstadoUsuario(id, 'Bloqueado');
-    if (btn.dataset.action === 'aprobar-refugio') HuellitasService.actualizarEstadoRefugio(id, 'Aprobado');
-    if (btn.dataset.action === 'suspender-refugio') HuellitasService.actualizarEstadoRefugio(id, 'Suspendido');
-    if (btn.dataset.action === 'leer-notificacion') HuellitasService.marcarNotificacionLeida(id);
+    if (btn.dataset.action === 'bloquear-usuario') PawsMatchService.actualizarEstadoUsuario(id, 'Bloqueado');
+    if (btn.dataset.action === 'aprobar-refugio') PawsMatchService.actualizarEstadoRefugio(id, 'Aprobado');
+    if (btn.dataset.action === 'suspender-refugio') PawsMatchService.actualizarEstadoRefugio(id, 'Suspendido');
+    if (btn.dataset.action === 'leer-notificacion') PawsMatchService.marcarNotificacionLeida(id);
     location.reload();
 });
 
