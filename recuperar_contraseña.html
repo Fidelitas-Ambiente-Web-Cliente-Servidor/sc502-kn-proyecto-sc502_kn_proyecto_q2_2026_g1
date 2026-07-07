@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar contraseña | PawMatch</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+<main class="register-app">
+
+    <section class="register-shell">
+
+        <div class="register-side">
+
+            <div class="register-brand">
+                <span class="brand-icon">🐾</span>
+
+                <div>
+                    <h2>PawMatch</h2>
+                    <p>Adopción Responsable</p>
+                </div>
+            </div>
+
+            <div class="register-text">
+                <h1>Recupera tu acceso.</h1>
+
+                <p>
+                    No te preocupes. Ingresa el correo electrónico asociado a tu cuenta y te enviaremos las instrucciones para restablecer tu contraseña.
+                </p>
+            </div>
+
+            <div class="register-animal-card">
+                <span>📧</span>
+                <p>La seguridad de tu cuenta es nuestra prioridad.</p>
+            </div>
+
+        </div>
+
+        <div class="register-form-area">
+
+            <div class="register-form-header">
+                <h1>Recuperar contraseña</h1>
+                <p>Escribe tu correo electrónico.</p>
+            </div>
+
+            <form action="php/recuperar.php" method="POST" class="register-form">
+
+                <div class="form-group">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary auth-btn">
+                    Enviar instrucciones
+                </button>
+
+            </form>
+
+            <div class="auth-divider">
+                <span>o</span>
+            </div>
+
+            <p class="auth-link">
+                ¿Recordaste tu contraseña?
+                <a href="login.html">Iniciar sesión</a>
+            </p>
+
+            <div class="back-home">
+                <a href="index.html">← Volver al inicio</a>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
