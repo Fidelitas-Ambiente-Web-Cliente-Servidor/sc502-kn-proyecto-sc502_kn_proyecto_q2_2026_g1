@@ -1,72 +1,185 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
     <title>Registro | PawsMatch</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body>
+
 <main class="register-app">
+
     <section class="register-shell">
+
         <div class="register-side">
+
             <div class="register-brand">
-                <span class="brand-icon">??</span>
+                <span class="brand-icon">üêæ</span>
+
                 <div>
                     <h2>PawsMatch</h2>
-                    <p>AdopciÛn Responsable</p>
+                    <p>Adopci√≥n Responsable</p>
                 </div>
             </div>
+
             <div class="register-text">
-                <h1>⁄nete a nuestra comunidad.</h1>
-                <p>Crea tu cuenta y comienza a encontrar un hogar para mascotas que esperan una segunda oportunidad.</p>
+                <h1>√önete a nuestra comunidad.</h1>
+
+                <p>
+                    Crea tu cuenta y comienza a encontrar un hogar
+                    para mascotas que esperan una segunda oportunidad.
+                </p>
             </div>
+
             <div class="register-animal-card">
-                <span>??</span>
-                <p>Tu prÛxima historia feliz puede empezar hoy.</p>
+                <span>üê∂</span>
+                <p>Tu pr√≥xima historia feliz puede empezar hoy.</p>
             </div>
+
         </div>
+
+
         <div class="register-form-area">
+
             <div class="register-form-header">
                 <h1>Crear cuenta</h1>
-                <p>Completa la siguiente informaciÛn.</p>
+                <p>Completa la siguiente informaci√≥n.</p>
             </div>
-            <form action="php/registro.php" method="POST" class="register-form">
+
+
+            <form
+                action="php/registro.php"
+                method="POST"
+                class="register-form"
+            >
+
                 <div class="form-group">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
+                    <label for="nombre">Nombre</label>
+
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Nombre"
+                        required
+                    >
                 </div>
+
+
                 <div class="form-group">
-                    <label for="correo">Correo electrÛnico</label>
-                    <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required>
+                    <label for="apellidos">Apellidos</label>
+
+                    <input
+                        type="text"
+                        id="apellidos"
+                        name="apellidos"
+                        placeholder="Apellidos"
+                        required
+                    >
                 </div>
+
+
                 <div class="form-group">
-                    <label for="telefono">TelÈfono</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="8888-8888" required>
+                    <label for="correo">Correo electr√≥nico</label>
+
+                    <input
+                        type="email"
+                        id="correo"
+                        name="correo"
+                        placeholder="correo@ejemplo.com"
+                        required
+                    >
                 </div>
+
+
                 <div class="form-group">
-                    <label for="password">ContraseÒa</label>
-                    <input type="password" id="password" name="password" placeholder="ïïïïïïïï" required>
+                    <label for="telefono">Tel√©fono</label>
+
+                    <input
+                        type="tel"
+                        id="telefono"
+                        name="telefono"
+                        placeholder="8888-8888"
+                    >
                 </div>
+
+
                 <div class="form-group">
-                    <label for="confirmar">Confirmar contraseÒa</label>
-                    <input type="password" id="confirmar" name="confirmar" placeholder="ïïïïïïïï" required>
+                    <label for="contrasena">Contrase√±a</label>
+
+                    <input
+                        type="password"
+                        id="contrasena"
+                        name="contrasena"
+                        placeholder="Contrase√±a"
+                        minlength="6"
+                        required
+                    >
                 </div>
-                <button type="submit" class="btn btn-primary auth-btn">Crear cuenta</button>
+
+
+                <div class="form-group">
+                    <label for="confirmar_contrasena">
+                        Confirmar contrase√±a
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmar_contrasena"
+                        name="confirmar_contrasena"
+                        placeholder="Confirmar contrase√±a"
+                        minlength="6"
+                        required
+                    >
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary auth-btn"
+                >
+                    Crear cuenta
+                </button>
+
             </form>
+
+
             <div class="auth-divider">
                 <span>o</span>
             </div>
-            <p class="auth-link">øYa tienes una cuenta? <a href="login.html">Iniciar sesiÛn</a></p>
+
+
+            <p class="auth-link">
+                ¬øYa tienes una cuenta?
+                <a href="login.html">Iniciar sesi√≥n</a>
+            </p>
+
+
             <div class="back-home">
-                <a href="index.html">? Volver al inicio</a>
+                <a href="index.html">‚Üê Volver al inicio</a>
             </div>
+
         </div>
+
     </section>
+
 </main>
+
+
 <script src="js/main.js"></script>
+
 </body>
 </html>

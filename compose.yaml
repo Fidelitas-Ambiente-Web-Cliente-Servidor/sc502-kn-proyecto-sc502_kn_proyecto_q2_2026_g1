@@ -1,0 +1,39 @@
+services:
+  web:
+    build: .
+    container_name: pawsmatch_web
+    ports:
+      - "8082:80"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.4
+    container_name: pawsmatch_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pawsmatch
+      MYSQL_USER: pawsmatch_user
+      MYSQL_PASSWORD: pawsmatch123
+    ports:
+      - "3310:3306"
+    volumes:
+      - pawsmatch_mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: pawsmatch_phpmyadmin
+    restart: always
+    ports:
+      - "8083:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    depends_on:
+      - db
+
+volumes:
+  pawsmatch_mysql_data:
