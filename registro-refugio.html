@@ -7,7 +7,7 @@
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <title>Registro | PawsMatch</title>
+    <title>Registrar refugio | PawsMatch</title>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -34,16 +34,16 @@
             </div>
 
             <div class="register-text">
-                <h1>Únete a nuestra comunidad.</h1>
+                <h1>Súmate como refugio aliado.</h1>
 
                 <p>
-                    Crea tu cuenta y comienza a encontrar un hogar
-                    para mascotas que esperan una segunda oportunidad.
+                    Registra tu refugio para publicar mascotas y conectar con adoptantes responsables.
+                    Un administrador revisará tu información antes de activar tu cuenta.
                 </p>
             </div>
 
             <div class="register-animal-card">
-                <p>Tu próxima historia feliz puede empezar hoy.</p>
+                <p>Juntos encontramos más hogares.</p>
             </div>
 
         </div>
@@ -52,38 +52,25 @@
         <div class="register-form-area">
 
             <div class="register-form-header">
-                <h1>Crear cuenta</h1>
-                <p>Completa la siguiente información.</p>
+                <h1>Registrar refugio</h1>
+                <p>Completa la información de tu organización.</p>
             </div>
 
 
             <form
-                action="php/registro.php"
+                action="php/registro_refugio.php"
                 method="POST"
                 class="register-form"
             >
 
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre_refugio">Nombre del refugio</label>
 
                     <input
                         type="text"
-                        id="nombre"
-                        name="nombre"
-                        placeholder="Nombre"
-                        required
-                    >
-                </div>
-
-
-                <div class="form-group">
-                    <label for="apellidos">Apellidos</label>
-
-                    <input
-                        type="text"
-                        id="apellidos"
-                        name="apellidos"
-                        placeholder="Apellidos"
+                        id="nombre_refugio"
+                        name="nombre_refugio"
+                        placeholder="Refugio San Roque"
                         required
                     >
                 </div>
@@ -96,7 +83,7 @@
                         type="email"
                         id="correo"
                         name="correo"
-                        placeholder="correo@ejemplo.com"
+                        placeholder="contacto@turefugio.org"
                         required
                     >
                 </div>
@@ -111,6 +98,43 @@
                         name="telefono"
                         placeholder="8888-8888"
                     >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="direccion">Dirección</label>
+
+                    <input
+                        type="text"
+                        id="direccion"
+                        name="direccion"
+                        placeholder="Provincia, cantón..."
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="cedula_juridica">Cédula jurídica (opcional)</label>
+
+                    <input
+                        type="text"
+                        id="cedula_juridica"
+                        name="cedula_juridica"
+                        placeholder="3-101-000000"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="descripcion">Cuéntanos sobre tu refugio (opcional)</label>
+
+                    <textarea
+                        id="descripcion"
+                        name="descripcion"
+                        rows="3"
+                        placeholder="A qué se dedica tu refugio, cuántos años tiene, etc."
+                    ></textarea>
                 </div>
 
 
@@ -148,7 +172,7 @@
                     type="submit"
                     class="btn btn-primary auth-btn"
                 >
-                    Crear cuenta
+                    Registrar refugio
                 </button>
 
             </form>
@@ -165,8 +189,8 @@
             </p>
 
             <p class="auth-link">
-                ¿Representas un refugio?
-                <a href="registro-refugio.html">Regístralo aquí</a>
+                ¿Quieres adoptar en vez de registrar un refugio?
+                <a href="registro.html">Regístrate como adoptante</a>
             </p>
 
 
@@ -195,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         correo_existe: 'Ya existe una cuenta registrada con ese correo.',
         clave_no_coincide: 'Las contraseñas no coinciden.',
         clave_corta: 'La contraseña debe tener al menos 6 caracteres.',
-        sistema: 'Ocurrió un error al crear tu cuenta. Intenta de nuevo.',
+        sistema: 'Ocurrió un error al registrar tu refugio. Intenta de nuevo.',
     };
 
     if (error && mensajes[error]) {

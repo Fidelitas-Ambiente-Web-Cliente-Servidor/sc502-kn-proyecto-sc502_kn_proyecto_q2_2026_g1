@@ -63,7 +63,6 @@
 }
 .toast.show { opacity: 1; transform: translateX(0); }
 .toast.hide  { opacity: 0; transform: translateX(20px); }
-.toast-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
 .toast-body { flex: 1; }
 .toast-title { font-weight: 700; margin-bottom: 0.1rem; }
 .toast-msg   { color: #57606a; }
@@ -75,13 +74,9 @@
 .toast-close:hover { color: #1f2328; }
 /* type variants */
 .toast.success { border-left-color: #22c55e; }
-.toast.success .toast-icon::before { content: '✅'; }
 .toast.error   { border-left-color: #ef4444; }
-.toast.error   .toast-icon::before { content: '❌'; }
 .toast.warning { border-left-color: #f59e0b; }
-.toast.warning .toast-icon::before { content: '⚠️'; }
 .toast.info    { border-left-color: #3b82f6; }
-.toast.info    .toast-icon::before { content: 'ℹ️'; }
 
 /* Confirm dialog overlay */
 .toast-overlay {
@@ -143,7 +138,6 @@
         toast.className = `toast ${type}`;
         toast.setAttribute('role', 'alert');
         toast.innerHTML = `
-            <span class="toast-icon" aria-hidden="true"></span>
             <div class="toast-body">
                 <div class="toast-title">${titles[type] || 'Info'}</div>
                 <div class="toast-msg">${message}</div>

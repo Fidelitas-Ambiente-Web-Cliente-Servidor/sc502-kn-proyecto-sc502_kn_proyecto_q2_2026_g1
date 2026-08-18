@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <title>Recuperar contrase馻 | PawsMatch</title>
+    <title>Recuperar contrase帽a | PawsMatch</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
@@ -20,11 +20,9 @@
         <div class="register-side">
 
             <div class="register-brand">
-                <span class="brand-icon">??</span>
-
                 <div>
                     <h2>PawsMatch</h2>
-                    <p>Adopci髇 Responsable</p>
+                    <p>Adopci贸n Responsable</p>
                 </div>
             </div>
 
@@ -32,12 +30,11 @@
                 <h1>Recupera tu acceso.</h1>
 
                 <p>
-                    No te preocupes. Ingresa el correo electr髇ico asociado a tu cuenta y te enviaremos las instrucciones para restablecer tu contrase馻.
+                    No te preocupes. Ingresa el correo electr贸nico asociado a tu cuenta y te enviaremos las instrucciones para restablecer tu contrase帽a.
                 </p>
             </div>
 
             <div class="register-animal-card">
-                <span>??</span>
                 <p>La seguridad de tu cuenta es nuestra prioridad.</p>
             </div>
 
@@ -46,14 +43,14 @@
         <div class="register-form-area">
 
             <div class="register-form-header">
-                <h1>Recuperar contrase馻</h1>
-                <p>Escribe tu correo electr髇ico.</p>
+                <h1>Recuperar contrase帽a</h1>
+                <p>Escribe tu correo electr贸nico.</p>
             </div>
 
             <form action="php/recuperar.php" method="POST" class="register-form">
 
                 <div class="form-group">
-                    <label for="correo">Correo electr髇ico</label>
+                    <label for="correo">Correo electr贸nico</label>
                     <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required>
                 </div>
 
@@ -68,12 +65,12 @@
             </div>
 
             <p class="auth-link">
-                縍ecordaste tu contrase馻?
-                <a href="login.html">Iniciar sesi髇</a>
+                驴Recordaste tu contrase帽a?
+                <a href="login.html">Iniciar sesi贸n</a>
             </p>
 
             <div class="back-home">
-                <a href="index.html">? Volver al inicio</a>
+                <a href="index.php">Volver al inicio</a>
             </div>
 
         </div>
@@ -82,7 +79,22 @@
 
 </main>
 
+<script src="js/toast.js"></script>
 <script src="js/main.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('error') === 'correo') {
+        PawsMatchToast.show('No encontramos una cuenta con ese correo.', 'error', 3000);
+    }
+
+    if (params.toString() !== '') {
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+});
+</script>
 
 </body>
 </html>

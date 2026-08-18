@@ -29,10 +29,6 @@
 
             <div class="auth-logo">
 
-                <div class="logo-icon">
-                    🐾
-                </div>
-
                 <div class="logo-text">
                     <h2>PawsMatch</h2>
                     <span>Adopción Responsable</span>
@@ -173,7 +169,7 @@
 
             <div class="back-home">
 
-                <a href="index.html">
+                <a href="index.php">
                     ← Volver al inicio
                 </a>
 
@@ -213,6 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
         inactivo:
             'Esta cuenta se encuentra inactiva.',
 
+        sesion:
+            'Debes iniciar sesión para continuar.',
+
+        permiso:
+            'No tienes permiso para acceder a esa página.',
+
         sistema:
             'Ocurrió un error al iniciar sesión.'
     };
@@ -225,8 +227,39 @@ document.addEventListener('DOMContentLoaded', () => {
             'error'
         );
 
+    }
 
-        // Quitar ?error=... de la dirección
+    if (parametros.get('restablecido') === 'ok') {
+
+        PawsMatchToast.show(
+            'Tu contraseña fue restablecida. Ya puedes iniciar sesión.',
+            'success'
+        );
+
+    }
+
+    if (parametros.get('registrado') === 'ok') {
+
+        PawsMatchToast.show(
+            '¡Cuenta creada correctamente! Ya puedes iniciar sesión.',
+            'success'
+        );
+
+    }
+
+    if (parametros.get('refugio_registrado') === 'ok') {
+
+        PawsMatchToast.show(
+            '¡Registro recibido! Tu refugio quedará pendiente de aprobación. Inicia sesión para ver el estado.',
+            'success',
+            5000
+        );
+
+    }
+
+    if (parametros.toString() !== '') {
+
+        // Quitar los parámetros de la dirección
         window.history.replaceState(
             {},
             document.title,

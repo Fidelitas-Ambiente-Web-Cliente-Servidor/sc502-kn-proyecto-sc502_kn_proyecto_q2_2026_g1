@@ -3,6 +3,7 @@
 session_start();
 
 require_once "config.php";
+require_once "helpers.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: ../login.html");
@@ -19,29 +20,7 @@ if ($correo === "" || $contrasena === "") {
 
 try {
 
-    $sql = "
-        SELECT
-            u.id_usuario,
-            u.nombre,
-            u.apellidos,
-            u.correo,
-            u.contrasena,
-            u.estado,
-            r.nombre AS rol
-        FROM usuarios u
-        INNER JOIN roles r
-            ON u.id_rol = r.id_rol
-        WHERE u.correo = :correo
-        LIMIT 1
-    ";
-
-    $stmt = $conexion->prepare($sql);
-
-    $stmt->execute([
-        ":correo" => $correo
-    ]);
-
-    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+    $usuario = Usuario::obtenerPorCorreoConRol($conexion, $correo);
 
 
     // Correo no encontrado
@@ -76,24 +55,26 @@ try {
     $_SESSION["mensaje_login"] =
         "¡Bienvenido/a, " . $usuario["nombre"] . "!";
 
+    registrarBitacora($conexion, $usuario["id_usuario"], "Inicio de sesión", $usuario["rol"]);
+
 
     // Redirección según rol
     switch ($usuario["rol"]) {
 
         case "ADMIN_GENERAL":
-            header("Location: ../admin-dashboard.html?login=ok");
+            header("Location: ../admin-dashboard.php?login=ok");
             break;
 
         case "REFUGIO":
-            header("Location: ../refugio-dashboard.html?login=ok");
+            header("Location: ../refugio-dashboard.php?login=ok");
             break;
 
         case "ADOPTANTE":
-            header("Location: ../perfil.html?login=ok");
+            header("Location: ../perfil.php?login=ok");
             break;
 
         default:
-            header("Location: ../index.html");
+            header("Location: ../index.php");
             break;
     }
 

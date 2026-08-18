@@ -1,9 +1,11 @@
 <?php
 
 require_once "config.php";
+require_once "helpers.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    die("Método no permitido.");
+    header("Location: ../registro.html");
+    exit;
 }
 
 $nombre = trim($_POST["nombre"] ?? "");
@@ -13,140 +15,60 @@ $telefono = trim($_POST["telefono"] ?? "");
 $contrasena = $_POST["contrasena"] ?? "";
 $confirmar = $_POST["confirmar_contrasena"] ?? "";
 
-
 // Validar campos obligatorios
-if (
-    $nombre === "" ||
-    $apellidos === "" ||
-    $correo === "" ||
-    $contrasena === ""
-) {
-    die("Todos los campos obligatorios deben completarse.");
+if ($nombre === "" || $apellidos === "" || $correo === "" || $contrasena === "") {
+    header("Location: ../registro.html?error=campos");
+    exit;
 }
-
 
 // Validar correo
 if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-    die("El correo electrónico no es válido.");
+    header("Location: ../registro.html?error=correo_invalido");
+    exit;
 }
-
 
 // Validar contraseñas
 if ($contrasena !== $confirmar) {
-    die("Las contraseñas no coinciden.");
+    header("Location: ../registro.html?error=clave_no_coincide");
+    exit;
 }
-
 
 // Longitud mínima
 if (strlen($contrasena) < 6) {
-    die("La contraseña debe tener al menos 6 caracteres.");
+    header("Location: ../registro.html?error=clave_corta");
+    exit;
 }
-
 
 try {
 
-    // Revisar si el correo ya existe
-    $sqlCorreo = "
-        SELECT id_usuario
-        FROM usuarios
-        WHERE correo = :correo
-    ";
-
-    $stmtCorreo = $conexion->prepare($sqlCorreo);
-
-    $stmtCorreo->execute([
-        ":correo" => $correo
-    ]);
-
-
-    if ($stmtCorreo->fetch()) {
-        die("Ya existe una cuenta registrada con ese correo.");
+    if (Usuario::correoExiste($conexion, $correo)) {
+        header("Location: ../registro.html?error=correo_existe");
+        exit;
     }
 
-
-    // Crear hash de la contraseña
-    $hash = password_hash(
-        $contrasena,
-        PASSWORD_DEFAULT
-    );
-
+    $hash = password_hash($contrasena, PASSWORD_DEFAULT);
 
     // Rol 3 = ADOPTANTE
-    $idRolAdoptante = 3;
+    $idUsuario = Usuario::crear($conexion, 3, $nombre, $apellidos, $correo, $hash, $telefono);
 
+    Adoptante::crear($conexion, $idUsuario);
 
-    // Insertar usuario
-    $sqlUsuario = "
-        INSERT INTO usuarios
-        (
-            id_rol,
-            nombre,
-            apellidos,
-            correo,
-            contrasena,
-            telefono,
-            estado
-        )
-        VALUES
-        (
-            :id_rol,
-            :nombre,
-            :apellidos,
-            :correo,
-            :contrasena,
-            :telefono,
-            'ACTIVO'
-        )
-    ";
+    registrarBitacora($conexion, $idUsuario, "Registro de usuario", "$nombre $apellidos se registró como adoptante.");
 
+    crearNotificacionParaRol(
+        $conexion,
+        "ADMIN_GENERAL",
+        "Nuevo adoptante registrado",
+        "$nombre $apellidos ($correo) se registró como adoptante.",
+        "SISTEMA"
+    );
 
-    $stmtUsuario = $conexion->prepare($sqlUsuario);
-
-
-    $stmtUsuario->execute([
-        ":id_rol" => $idRolAdoptante,
-        ":nombre" => $nombre,
-        ":apellidos" => $apellidos,
-        ":correo" => $correo,
-        ":contrasena" => $hash,
-        ":telefono" => $telefono
-    ]);
-
-
-    // Obtener ID del usuario recién creado
-    $idUsuario = $conexion->lastInsertId();
-
-
-    // Crear perfil de adoptante
-    $sqlAdoptante = "
-        INSERT INTO adoptantes
-        (
-            id_usuario
-        )
-        VALUES
-        (
-            :id_usuario
-        )
-    ";
-
-
-    $stmtAdoptante = $conexion->prepare($sqlAdoptante);
-
-
-    $stmtAdoptante->execute([
-        ":id_usuario" => $idUsuario
-    ]);
-
-
-    echo "
-        <h2>Registro realizado correctamente.</h2>
-        <p>Tu cuenta fue creada exitosamente.</p>
-        <a href='../login.html'>Ir a iniciar sesión</a>
-    ";
-
+    header("Location: ../login.html?registrado=ok");
+    exit;
 
 } catch (PDOException $e) {
 
-    echo "Error al registrar el usuario: " . $e->getMessage();
+    header("Location: ../registro.html?error=sistema");
+    exit;
 
 }
