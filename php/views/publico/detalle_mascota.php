@@ -106,7 +106,7 @@
                 <?php if ($esAdoptante): ?>
                     <form action="php/favorito_toggle.php" method="POST">
                         <input type="hidden" name="id_mascota" value="<?php echo (int) $mascota['id_mascota']; ?>">
-                        <input type="hidden" name="volver_a" value="detalle_mascota.php?id=<?php echo (int) $mascota['id_mascota']; ?>">
+                        <input type="hidden" name="volver_a" value="../detalle_mascota.php?id=<?php echo (int) $mascota['id_mascota']; ?>">
                         <button type="submit" class="secondary-btn" style="cursor:pointer;">
                             <?php echo $esFavorito ? 'En favoritos' : 'Agregar a favoritos'; ?>
                         </button>
