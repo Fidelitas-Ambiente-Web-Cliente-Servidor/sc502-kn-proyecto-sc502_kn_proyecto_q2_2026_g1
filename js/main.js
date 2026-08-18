@@ -36,23 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!e.target.closest('.navbar')) toggleMenu(false);
     });
 
-    // ── Panel access dropdown ────────────────────────────────────
-    // NOTE: purely presentational for demo. When a real auth layer
-    // exists (Spring Security / JWT), replace this block with a
-    // server-rendered <th:if> or a JS check on the session token.
-    const panelDropdown = document.getElementById('panelDropdown');
-    const panelBtn      = document.getElementById('panelDropdownBtn');
-    if (panelDropdown && panelBtn) {
-        panelBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            panelDropdown.classList.toggle('open');
-        });
-        // Close when clicking anywhere outside
-        document.addEventListener('click', () => {
-            panelDropdown.classList.remove('open');
-        });
-    }
-
     // ── Pet Carousel ─────────────────────────────────────────────
     const track    = document.getElementById('carouselTrack');
     const prevBtn  = document.getElementById('carouselPrev');
