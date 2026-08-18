@@ -52,3 +52,29 @@ function obtenerAdoptanteSesion(PDO $conexion): array
 
     return $adoptante;
 }
+
+/**
+ * Paleta de acento por refugio: cada refugio recibe un color distinto entre sí
+ * (ciclando por id_refugio) para diferenciar visualmente sus paneles.
+ */
+const PALETA_REFUGIOS = [
+    0 => ["clase" => "refugio-color-0", "color" => "#14b8a6", "oscuro" => "#0f766e"],
+    1 => ["clase" => "refugio-color-1", "color" => "#f97316", "oscuro" => "#c2410c"],
+    2 => ["clase" => "refugio-color-2", "color" => "#6366f1", "oscuro" => "#4338ca"],
+    3 => ["clase" => "refugio-color-3", "color" => "#ec4899", "oscuro" => "#9d174d"],
+];
+
+function claseTemaRefugio(int $idRefugio): string
+{
+    return PALETA_REFUGIOS[$idRefugio % 4]["clase"];
+}
+
+function colorTemaRefugio(int $idRefugio): string
+{
+    return PALETA_REFUGIOS[$idRefugio % 4]["color"];
+}
+
+function colorTemaAdmin(): string
+{
+    return "#f59e0b";
+}

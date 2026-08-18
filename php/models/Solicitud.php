@@ -5,6 +5,24 @@
  */
 class Solicitud
 {
+    /** Conteo por estado de las solicitudes recibidas por un refugio (para su gráfica). */
+    public static function contarPorEstadoDeRefugio(PDO $conexion, int $idRefugio): array
+    {
+        $stmt = $conexion->prepare("
+            SELECT s.estado, COUNT(*) AS total
+            FROM solicitudes s
+            INNER JOIN mascotas m ON s.id_mascota = m.id_mascota
+            WHERE m.id_refugio = :id_refugio
+            GROUP BY s.estado
+        ");
+        $stmt->execute([":id_refugio" => $idRefugio]);
+        $mapa = ["PENDIENTE" => 0, "EN_REVISION" => 0, "APROBADA" => 0, "RECHAZADA" => 0, "CANCELADA" => 0];
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $f) {
+            $mapa[$f["estado"]] = (int) $f["total"];
+        }
+        return $mapa;
+    }
+
     public static function existeActiva(PDO $conexion, int $idAdoptante, int $idMascota): bool
     {
         $stmt = $conexion->prepare("

@@ -138,6 +138,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm && contactSuccess) {
         contactForm.addEventListener('submit', e => {
             e.preventDefault();
+
+            const nombre  = document.getElementById('contactNombre').value;
+            const correo  = document.getElementById('contactCorreo').value;
+            const asunto  = document.getElementById('contactAsunto').value || 'Contacto desde PawsMatch';
+            const mensaje = document.getElementById('contactMensaje').value;
+
+            const cuerpo = `Nombre: ${nombre}\nCorreo: ${correo}\n\n${mensaje}`;
+            const mailtoUrl = `mailto:hola@pawsmatch.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+            window.location.href = mailtoUrl;
             contactForm.style.display = 'none';
             contactSuccess.style.display = 'block';
         });

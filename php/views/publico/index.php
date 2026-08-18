@@ -34,29 +34,29 @@
         <div class="impact-card">
             <div class="impact-item">
                 <div>
-                    <h3>1,245+</h3>
+                    <h3><?php echo $statAdopciones; ?></h3>
                     <p>Adopciones exitosas</p>
                 </div>
             </div>
 
             <div class="impact-item">
                 <div>
-                    <h3>45</h3>
+                    <h3><?php echo $statRefugios; ?></h3>
                     <p>Refugios aliados</p>
                 </div>
             </div>
 
             <div class="impact-item">
                 <div>
-                    <h3>3,890+</h3>
+                    <h3><?php echo $statFamilias; ?></h3>
                     <p>Familias felices</p>
                 </div>
             </div>
 
             <div class="impact-item">
                 <div>
-                    <h3>98%</h3>
-                    <p>Adopciones seguras</p>
+                    <h3><?php echo $statDisponibles; ?></h3>
+                    <p>Mascotas disponibles</p>
                 </div>
             </div>
         </div>
@@ -76,82 +76,25 @@
                 <div class="carousel-viewport" id="carouselViewport">
                     <div class="carousel-track" id="carouselTrack">
 
-                        <div class="pet-card">
-                            <div class="pet-image">
-                                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80" alt="Max">
-                                <span class="pet-badge">Perro</span>
+                        <?php
+                        $tamanosCarousel = ["PEQUENO" => "Pequeño", "MEDIANO" => "Mediano", "GRANDE" => "Grande"];
+                        ?>
+                        <?php foreach ($mascotasCarousel as $m): ?>
+                            <div class="pet-card">
+                                <div class="pet-image">
+                                    <img src="<?php echo htmlspecialchars($m['foto'] ?: 'https://via.placeholder.com/500x400?text=PawsMatch'); ?>" alt="<?php echo htmlspecialchars($m['nombre']); ?>">
+                                    <span class="pet-badge<?php echo $m['especie'] === 'Gato' ? ' badge-pink' : ''; ?>"><?php echo htmlspecialchars($m['especie']); ?></span>
+                                </div>
+                                <div class="pet-info">
+                                    <h3><?php echo htmlspecialchars($m['nombre']); ?></h3>
+                                    <p class="pet-details">
+                                        <?php echo $m['edad'] > 0 ? ((int) $m['edad']) . (((int) $m['edad'] === 1) ? ' año' : ' años') : 'Menor a 1 año'; ?>
+                                        • <?php echo $tamanosCarousel[$m['tamano']] ?? $m['tamano']; ?>
+                                        • <?php echo $m['vacunado'] ? 'Vacunado/a' : 'Vacunación pendiente'; ?>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="pet-info">
-                                <h3>Max</h3>
-                                <p class="pet-details">2 años • Mediano • Vacunado</p>
-                            </div>
-                        </div>
-
-                        <div class="pet-card">
-                            <div class="pet-image">
-                                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=500&q=80" alt="Luna">
-                                <span class="pet-badge badge-pink">Gato</span>
-                            </div>
-                            <div class="pet-info">
-                                <h3>Luna</h3>
-                                <p class="pet-details">4 meses • Hembra • Esterilizada</p>
-                            </div>
-                        </div>
-
-                        <div class="pet-card">
-                            <div class="pet-image">
-                                <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=500&q=80" alt="Rocky">
-                                <span class="pet-badge">Perro</span>
-                            </div>
-                            <div class="pet-info">
-                                <h3>Rocky</h3>
-                                <p class="pet-details">1 año • Grande • Vacunado</p>
-                            </div>
-                        </div>
-
-                        <div class="pet-card">
-                            <div class="pet-image">
-                                <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?auto=format&fit=crop&w=500&q=80" alt="Milo">
-                                <span class="pet-badge badge-pink">Gato</span>
-                            </div>
-                            <div class="pet-info">
-                                <h3>Milo</h3>
-                                <p class="pet-details">3 meses • Macho • Desparasitado</p>
-                            </div>
-                        </div>
-
-                        <div class="pet-card">
-                            <div class="pet-image">
-                                <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?auto=format&fit=crop&w=500&q=80" alt="Benny">
-                                <span class="pet-badge">Perro</span>
-                            </div>
-                            <div class="pet-info">
-                                <h3>Benny</h3>
-                                <p class="pet-details">3 años • Grande • Esterilizado</p>
-                            </div>
-                        </div>
-
-                        <div class="pet-card">
-                            <div class="pet-image">
-                                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80" alt="Cleo">
-                                <span class="pet-badge badge-pink">Gato</span>
-                            </div>
-                            <div class="pet-info">
-                                <h3>Cleo</h3>
-                                <p class="pet-details">1 año • Pequeña • Vacunada</p>
-                            </div>
-                        </div>
-
-                        <div class="pet-card">
-                            <div class="pet-image">
-                                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=500&q=80" alt="Duke">
-                                <span class="pet-badge">Perro</span>
-                            </div>
-                            <div class="pet-info">
-                                <h3>Duke</h3>
-                                <p class="pet-details">5 años • Grande • Vacunado</p>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
 
                     </div>
                 </div>

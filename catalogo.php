@@ -6,7 +6,13 @@ require_once "php/config.php";
 require_once "php/models/autoload.php";
 
 $paginaActivaPublica = "mascotas";
-$mascotas = Mascota::listarDisponibles($conexion);
+
+$busqueda = trim($_GET["q"] ?? "");
+$filtro = $_GET["filtro"] ?? "";
+$especie = in_array($filtro, ["Perro", "Gato"], true) ? $filtro : null;
+$soloCachorros = $filtro === "cachorros";
+
+$mascotas = Mascota::listarDisponibles($conexion, $busqueda ?: null, $especie, $soloCachorros);
 
 /* Matching: si es un adoptante logueado, ordenar por compatibilidad */
 $perfilAdoptante = null;

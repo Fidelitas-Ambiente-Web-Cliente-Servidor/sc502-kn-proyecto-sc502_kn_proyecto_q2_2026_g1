@@ -6,20 +6,21 @@
             Explora las mascotas disponibles y encuentra la compañera perfecta para tu hogar.
         </p>
 
-        <div class="catalog-search">
-            <input type="text" placeholder="Buscar por nombre o raza...">
+        <form method="GET" action="catalogo.php">
+            <div class="catalog-search">
+                <input type="text" name="q" placeholder="Buscar por nombre o raza..." value="<?php echo htmlspecialchars($busqueda); ?>">
+                <button type="submit">
+                    Buscar
+                </button>
+            </div>
 
-            <button>
-                Buscar
-            </button>
-        </div>
-
-        <div class="catalog-filters">
-            <button class="active">Todos</button>
-            <button>Perros</button>
-            <button>Gatos</button>
-            <button>Cachorros</button>
-        </div>
+            <div class="catalog-filters">
+                <button type="submit" name="filtro" value="" class="<?php echo $filtro === '' ? 'active' : ''; ?>">Todos</button>
+                <button type="submit" name="filtro" value="Perro" class="<?php echo $filtro === 'Perro' ? 'active' : ''; ?>">Perros</button>
+                <button type="submit" name="filtro" value="Gato" class="<?php echo $filtro === 'Gato' ? 'active' : ''; ?>">Gatos</button>
+                <button type="submit" name="filtro" value="cachorros" class="<?php echo $filtro === 'cachorros' ? 'active' : ''; ?>">Cachorros</button>
+            </div>
+        </form>
 
     </section>
 
@@ -38,7 +39,7 @@
         <?php if (empty($mascotas)): ?>
 
             <p style="grid-column:1/-1;text-align:center;color:#6b7280;padding:2rem;">
-                Todavía no hay mascotas disponibles para adopción.
+                <?php echo ($busqueda !== '' || $filtro !== '') ? 'No encontramos mascotas que coincidan con tu búsqueda.' : 'Todavía no hay mascotas disponibles para adopción.'; ?>
             </p>
 
         <?php else: ?>

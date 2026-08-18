@@ -5,16 +5,38 @@
  */
 class Mascota
 {
-    public static function listarDisponibles(PDO $conexion): array
+    /**
+     * @param string|null $busqueda Filtra por nombre o raza (LIKE).
+     * @param string|null $especie  "Perro" o "Gato".
+     * @param bool $soloCachorros   Solo mascotas menores a 1 año (edad = 0).
+     */
+    public static function listarDisponibles(PDO $conexion, ?string $busqueda = null, ?string $especie = null, bool $soloCachorros = false): array
     {
-        return $conexion->query("
+        $condiciones = ["m.estado = 'DISPONIBLE'", "r.estado = 'APROBADO'"];
+        $parametros = [];
+
+        if ($busqueda !== null && $busqueda !== "") {
+            $condiciones[] = "(m.nombre LIKE :busqueda OR m.raza LIKE :busqueda)";
+            $parametros[":busqueda"] = "%$busqueda%";
+        }
+        if ($especie !== null && $especie !== "") {
+            $condiciones[] = "m.especie = :especie";
+            $parametros[":especie"] = $especie;
+        }
+        if ($soloCachorros) {
+            $condiciones[] = "m.edad = 0";
+        }
+
+        $stmt = $conexion->prepare("
             SELECT m.id_mascota, m.nombre, m.especie, m.raza, m.edad, m.tamano, m.nivel_energia,
-                   m.compatible_ninos, m.compatible_animales, m.foto, r.nombre_refugio
+                   m.compatible_ninos, m.compatible_animales, m.vacunado, m.foto, r.nombre_refugio
             FROM mascotas m
             INNER JOIN refugios r ON m.id_refugio = r.id_refugio
-            WHERE m.estado = 'DISPONIBLE' AND r.estado = 'APROBADO'
+            WHERE " . implode(" AND ", $condiciones) . "
             ORDER BY m.fecha_registro DESC
-        ")->fetchAll(PDO::FETCH_ASSOC);
+        ");
+        $stmt->execute($parametros);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /** Solo retorna la mascota si su refugio ya está aprobado (visibilidad pública). */
@@ -164,5 +186,39 @@ class Mascota
     public static function contarPorEspecie(PDO $conexion): array
     {
         return $conexion->query("SELECT especie, COUNT(*) AS total FROM mascotas GROUP BY especie ORDER BY total DESC")->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /** Conteo global por estado (para el donut del admin). */
+    public static function contarPorEstadoGeneral(PDO $conexion): array
+    {
+        $filas = $conexion->query("SELECT estado, COUNT(*) AS total FROM mascotas GROUP BY estado")->fetchAll(PDO::FETCH_ASSOC);
+        $mapa = ["DISPONIBLE" => 0, "EN_PROCESO" => 0, "ADOPTADO" => 0, "INACTIVO" => 0];
+        foreach ($filas as $f) {
+            $mapa[$f["estado"]] = (int) $f["total"];
+        }
+        return $mapa;
+    }
+
+    /** Conteo por estado de un refugio específico (para su propio donut). */
+    public static function contarPorEstadoDeRefugio(PDO $conexion, int $idRefugio): array
+    {
+        $stmt = $conexion->prepare("SELECT estado, COUNT(*) AS total FROM mascotas WHERE id_refugio = :id_refugio GROUP BY estado");
+        $stmt->execute([":id_refugio" => $idRefugio]);
+        $mapa = ["DISPONIBLE" => 0, "EN_PROCESO" => 0, "ADOPTADO" => 0, "INACTIVO" => 0];
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $f) {
+            $mapa[$f["estado"]] = (int) $f["total"];
+        }
+        return $mapa;
+    }
+
+    /** Mascotas disponibles hace más de $dias días sin ser adoptadas (para alertas). */
+    public static function contarEstancadas(PDO $conexion, int $dias = 30): int
+    {
+        $stmt = $conexion->prepare("
+            SELECT COUNT(*) FROM mascotas
+            WHERE estado = 'DISPONIBLE' AND fecha_registro <= DATE_SUB(NOW(), INTERVAL :dias DAY)
+        ");
+        $stmt->execute([":dias" => $dias]);
+        return (int) $stmt->fetchColumn();
     }
 }

@@ -7,6 +7,47 @@
                 </div>
             </div>
 
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-label"><i class="fas fa-file-signature purple"></i> Solicitudes activas</div>
+                    <div class="stat-value"><?php echo $solicitudesActivas; ?></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label"><i class="fas fa-heart pink"></i> Mascotas favoritas</div>
+                    <div class="stat-value"><?php echo count($favoritos); ?></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label"><i class="fas fa-calendar-check green"></i> Próximo seguimiento</div>
+                    <div class="stat-value"><?php echo $proximoSeguimiento ? date('d/m/Y', strtotime($proximoSeguimiento['fecha_programada'])) : '—'; ?></div>
+                </div>
+            </div>
+
+            <?php if (!empty($mascotasRecomendadas)): ?>
+                <div class="card mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0"><i class="fas fa-wand-magic-sparkles me-2 text-primary"></i>Recomendadas para ti</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="featured-pets-row">
+                            <?php foreach ($mascotasRecomendadas as $m): ?>
+                                <a href="detalle_mascota.php?id=<?php echo (int) $m['id_mascota']; ?>" class="featured-pet-card">
+                                    <img src="<?php echo htmlspecialchars($m['foto'] ?: 'https://via.placeholder.com/400x300?text=PawsMatch'); ?>" alt="<?php echo htmlspecialchars($m['nombre']); ?>">
+                                    <div class="fp-body">
+                                        <strong><?php echo htmlspecialchars($m['nombre']); ?></strong>
+                                        <span>
+                                            <?php echo htmlspecialchars($m['raza']); ?>
+                                            <?php if (isset($m['compatibilidad'])): ?>
+                                                · <?php echo (int) $m['compatibilidad']; ?>% afinidad
+                                            <?php endif; ?>
+                                        </span>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <div class="row g-4">
 
                 <!-- FORMULARIO -->
@@ -104,20 +145,6 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="tiene_ninos" name="tiene_ninos" value="1" <?php echo !empty($usuario["tiene_ninos"]) ? "checked" : ""; ?>>
                                             <label class="form-check-label" for="tiene_ninos">Hay niños en el hogar</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 mt-4">
-                                        <h6>Documentación Requerida</h6>
-                                        <div class="list-group">
-                                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div><i class="fas fa-id-card me-2 text-primary"></i>Identificación Oficial</div>
-                                                <span class="badge bg-secondary">Pendiente</span>
-                                            </div>
-                                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div><i class="fas fa-home me-2 text-primary"></i>Comprobante de Domicilio</div>
-                                                <span class="badge bg-secondary">Pendiente</span>
-                                            </div>
                                         </div>
                                     </div>
 

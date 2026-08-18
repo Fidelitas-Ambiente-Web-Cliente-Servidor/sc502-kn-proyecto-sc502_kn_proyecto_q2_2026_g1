@@ -37,9 +37,9 @@ $estadoTexto = ["DISPONIBLE" => "Disponible", "EN_PROCESO" => "En proceso", "ADO
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin.css?v=4"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="admin-body" data-page="refugio-mascotas">
+<body class="admin-body <?php echo claseTemaRefugio($refugio['id_refugio']); ?>" data-page="refugio-mascotas">
 
 <?php require "php/views/partials/navbar_refugio.php"; ?>
 <?php require "php/views/refugio/mascotas.php"; ?>

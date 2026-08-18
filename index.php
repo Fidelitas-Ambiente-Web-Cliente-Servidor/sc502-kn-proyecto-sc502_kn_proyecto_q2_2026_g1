@@ -2,7 +2,18 @@
 
 session_start();
 
+require_once "php/config.php";
+require_once "php/models/autoload.php";
+
 $paginaActivaPublica = "inicio";
+
+$mascotasDisponibles = Mascota::listarDisponibles($conexion);
+$mascotasCarousel = array_slice($mascotasDisponibles, 0, 8);
+
+$statAdopciones = Adopcion::contarTotal($conexion);
+$statRefugios = Refugio::contarPorEstado($conexion, "APROBADO");
+$statFamilias = Adopcion::contarFamiliasUnicas($conexion);
+$statDisponibles = count($mascotasDisponibles);
 
 ?>
 <!DOCTYPE html>

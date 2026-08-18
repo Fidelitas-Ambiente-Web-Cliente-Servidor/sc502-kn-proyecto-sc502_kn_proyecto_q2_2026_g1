@@ -21,8 +21,29 @@ if (!$usuario) {
 $nombreCompleto = trim($usuario["nombre"] . " " . $usuario["apellidos"]);
 
 $favoritos = [];
+$solicitudesActivas = 0;
+$proximoSeguimiento = null;
+$mascotasRecomendadas = [];
+
 if (!empty($usuario["id_adoptante"])) {
-    $favoritos = Favorito::listarPorAdoptante($conexion, $usuario["id_adoptante"]);
+    $idAdoptante = (int) $usuario["id_adoptante"];
+
+    $favoritos = Favorito::listarPorAdoptante($conexion, $idAdoptante);
+
+    $todasSolicitudes = Solicitud::listarPorAdoptante($conexion, $idAdoptante);
+    $solicitudesActivas = count(array_filter($todasSolicitudes, fn($s) => in_array($s["estado"], ["PENDIENTE", "EN_REVISION", "APROBADA"])));
+
+    $adopciones = Adopcion::listarPorAdoptante($conexion, $idAdoptante);
+    $seguimientosPorAdopcion = Seguimiento::listarPorAdopciones($conexion, array_column($adopciones, "id_adopcion"));
+    foreach ($seguimientosPorAdopcion as $lista) {
+        foreach ($lista as $seg) {
+            if ($seg["estado"] === "PENDIENTE" && ($proximoSeguimiento === null || $seg["fecha_programada"] < $proximoSeguimiento["fecha_programada"])) {
+                $proximoSeguimiento = $seg;
+            }
+        }
+    }
+
+    $mascotasRecomendadas = array_slice(Matching::ordenarPorCompatibilidad(Mascota::listarDisponibles($conexion), $usuario), 0, 4);
 }
 
 ?>
@@ -36,7 +57,7 @@ if (!empty($usuario["id_adoptante"])) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/adoptante.css">
+    <link rel="stylesheet" href="css/adoptante.css?v=4">
 </head>
 <body>
 

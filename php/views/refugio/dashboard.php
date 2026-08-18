@@ -4,38 +4,38 @@
                     <p>Resumen general de <?php echo htmlspecialchars($refugio['nombre_refugio']); ?>.</p>
                 </div>
                 <div class="admin-actions">
-                    <a href="refugio-mascotas.php" class="btn btn-primary">Gestionar mascotas</a>
-                    <a href="refugio-solicitudes.php" class="btn btn-secondary">Ver solicitudes</a>
+                    <a href="refugio-mascotas.php" class="btn btn-primary"><i class="fas fa-paw"></i> Gestionar mascotas</a>
+                    <a href="refugio-solicitudes.php" class="btn btn-secondary"><i class="fas fa-clipboard-list"></i> Ver solicitudes</a>
                 </div>
             </div>
 
             <?php if ($refugio['estado'] === 'PENDIENTE'): ?>
                 <div class="admin-card" style="background:#fffbeb;border:1px solid #fde68a;color:#92400e;margin-bottom:1.2rem;padding:1rem 1.2rem;">
-                    Tu refugio está <strong>pendiente de aprobación</strong> por un administrador. Podrás registrar y publicar
+                    <i class="fas fa-circle-exclamation"></i> Tu refugio está <strong>pendiente de aprobación</strong> por un administrador. Podrás registrar y publicar
                     mascotas en cuanto tu cuenta sea aprobada.
                 </div>
             <?php elseif ($refugio['estado'] === 'RECHAZADO'): ?>
                 <div class="admin-card" style="background:#fee2e2;border:1px solid #fecaca;color:#991b1b;margin-bottom:1.2rem;padding:1rem 1.2rem;">
-                    Tu refugio fue <strong>rechazado</strong> por un administrador. Contacta a soporte si crees que esto es un error.
+                    <i class="fas fa-circle-xmark"></i> Tu refugio fue <strong>rechazado</strong> por un administrador. Contacta a soporte si crees que esto es un error.
                 </div>
             <?php endif; ?>
 
-            <div class="kpi-grid">
-                <div class="kpi-card"><div><p>Total mascotas</p><h3><?php echo (int) $kpiMascotas['total']; ?></h3></div></div>
-                <div class="kpi-card"><div><p>Disponibles</p><h3><?php echo (int) $kpiMascotas['disponibles']; ?></h3></div></div>
-                <div class="kpi-card"><div><p>Adoptadas</p><h3><?php echo (int) $kpiMascotas['adoptadas']; ?></h3></div></div>
-                <div class="kpi-card"><div><p>Solicitudes pendientes</p><h3><?php echo $pendientes; ?></h3></div></div>
+            <div class="stat-grid">
+                <div class="stat-card"><div class="stat-label"><i class="fas fa-paw purple"></i> Total mascotas</div><div class="stat-value"><?php echo (int) $kpiMascotas['total']; ?></div></div>
+                <div class="stat-card"><div class="stat-label"><i class="fas fa-heart green"></i> Disponibles</div><div class="stat-value"><?php echo (int) $kpiMascotas['disponibles']; ?></div></div>
+                <div class="stat-card"><div class="stat-label"><i class="fas fa-house-circle-check blue"></i> Adoptadas</div><div class="stat-value"><?php echo (int) $kpiMascotas['adoptadas']; ?></div></div>
+                <div class="stat-card"><div class="stat-label"><i class="fas fa-clock yellow"></i> Solicitudes pendientes</div><div class="stat-value"><?php echo $pendientes; ?></div></div>
             </div>
 
-            <div class="chart-grid" style="margin-bottom:1.4rem">
-                <a href="refugio-mascotas.php" class="admin-card" style="text-decoration:none;display:block">
-                    <h3 style="margin-bottom:.3rem">Gestión de mascotas</h3>
-                    <p class="text-muted" style="font-size:.9rem">Registrar, editar y publicar mascotas en el catálogo.</p>
-                </a>
-                <a href="refugio-solicitudes.php" class="admin-card" style="text-decoration:none;display:block">
-                    <h3 style="margin-bottom:.3rem">Solicitudes recibidas</h3>
-                    <p class="text-muted" style="font-size:.9rem">Aprobar o rechazar solicitudes de adopción.</p>
-                </a>
+            <div class="dash-grid">
+                <section class="admin-card chart-card">
+                    <h2><i class="fas fa-chart-column" style="color:var(--primary);margin-right:.4rem;"></i>Solicitudes por estado</h2>
+                    <div class="chart-wrap"><canvas id="chartSolicitudesEstado"></canvas></div>
+                </section>
+                <section class="admin-card chart-card">
+                    <h2><i class="fas fa-chart-pie" style="color:var(--primary);margin-right:.4rem;"></i>Mascotas por estado</h2>
+                    <div class="chart-wrap"><canvas id="chartMascotasEstadoRefugio"></canvas></div>
+                </section>
             </div>
 
             <section class="admin-card">
@@ -62,4 +62,23 @@
                         </tbody>
                     </table>
                 </div>
+            </section>
+
+            <section class="admin-card">
+                <h2>Mis mascotas disponibles</h2>
+                <?php if (empty($mascotasDestacadas)): ?>
+                    <p class="text-muted py-3">Aún no tienes mascotas disponibles publicadas.</p>
+                <?php else: ?>
+                    <div class="featured-pets-row">
+                        <?php foreach ($mascotasDestacadas as $m): ?>
+                            <div class="featured-pet-card">
+                                <img src="<?php echo htmlspecialchars($m['foto'] ?: 'https://via.placeholder.com/400x300?text=PawsMatch'); ?>" alt="<?php echo htmlspecialchars($m['nombre']); ?>">
+                                <div class="fp-body">
+                                    <strong><?php echo htmlspecialchars($m['nombre']); ?></strong>
+                                    <span><?php echo htmlspecialchars($m['raza']); ?></span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </section>

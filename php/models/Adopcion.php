@@ -63,4 +63,45 @@ class Adopcion
     {
         return (int) $conexion->query("SELECT COUNT(*) FROM adopciones")->fetchColumn();
     }
+
+    /** Cantidad de adoptantes distintos con al menos una adopción (para "familias felices"). */
+    public static function contarFamiliasUnicas(PDO $conexion): int
+    {
+        return (int) $conexion->query("
+            SELECT COUNT(DISTINCT sol.id_adoptante)
+            FROM adopciones ad
+            INNER JOIN solicitudes sol ON ad.id_solicitud = sol.id_solicitud
+        ")->fetchColumn();
+    }
+
+    /**
+     * Adopciones reales de los últimos $meses meses, agrupadas por mes,
+     * incluyendo los meses sin ninguna (en 0) para que la gráfica no tenga huecos.
+     * Retorna [['etiqueta' => 'ene 2026', 'total' => 0], ...] en orden cronológico.
+     */
+    public static function contarPorMes(PDO $conexion, int $meses = 6): array
+    {
+        $stmt = $conexion->prepare("
+            SELECT DATE_FORMAT(fecha_adopcion, '%Y-%m') AS mes, COUNT(*) AS total
+            FROM adopciones
+            WHERE fecha_adopcion >= DATE_SUB(CURDATE(), INTERVAL :meses MONTH)
+            GROUP BY mes
+        ");
+        $stmt->execute([":meses" => $meses]);
+        $porMes = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), "total", "mes");
+
+        $mesesEs = ["01" => "ene", "02" => "feb", "03" => "mar", "04" => "abr", "05" => "may", "06" => "jun",
+                    "07" => "jul", "08" => "ago", "09" => "sep", "10" => "oct", "11" => "nov", "12" => "dic"];
+
+        $resultado = [];
+        for ($i = $meses - 1; $i >= 0; $i--) {
+            $fecha = date("Y-m", strtotime("-$i months"));
+            [$anio, $mes] = explode("-", $fecha);
+            $resultado[] = [
+                "etiqueta" => $mesesEs[$mes] . " " . $anio,
+                "total" => (int) ($porMes[$fecha] ?? 0),
+            ];
+        }
+        return $resultado;
+    }
 }

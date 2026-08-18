@@ -1,94 +1,163 @@
+/* =====================================================
+   PawsMatch — Panel del adoptante
+   Alineado a los mismos tokens de marca que el sitio público
+   (ver css/base.css y css/admin.css)
+   ===================================================== */
+
 :root {
-    --primary-color: #6c5ce7;
-    --secondary-color: #a29bfe;
-    --accent-color: #fdcb6e;
-    --success-color: #00b894;
-    --danger-color: #d63031;
-    --light-bg: #f9f9f9;
-    --dark-text: #2d3436;
-    --light-text: #636e72;
+    --primary-color: #3b82f6;
+    --primary-dark: #1d4ed8;
+    --primary-soft: #dbeafe;
+    --secondary-color: #60a5fa;
+    --accent-color: #facc15;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --pink: #ec4899;
+    --light-bg: #fbfaff;
+    --dark-text: #111827;
+    --light-text: #6b7280;
+    --border-soft: #e5edfb;
+    --shadow: 0 18px 40px rgba(17, 24, 39, 0.08);
+    --shadow-soft: 0 12px 30px rgba(59, 130, 246, 0.15);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: var(--light-bg);
     color: var(--dark-text);
 }
 
-.navbar {
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+/* ===== App shell: barra superior + sidebar (mismo lenguaje visual que admin/refugio) ===== */
+.app-shell { max-width: 1300px; margin: 0 auto; padding: 0 1.5rem 2.5rem; }
+
+.app-topbar { display:flex; align-items:center; gap:1.2rem; padding:1.2rem 0; }
+.app-logo { display:flex; align-items:center; gap:.5rem; font-weight:800; font-size:1.15rem; color: var(--primary-color); text-decoration:none; flex-shrink:0; }
+.app-search { flex:1; max-width: 420px; display:flex; align-items:center; gap:.6rem; background:#fff; border:1px solid var(--border-soft); border-radius:14px; padding:.7rem 1rem; color: var(--light-text); text-decoration:none; font-size:.88rem; }
+.app-topbar-right { margin-left:auto; display:flex; align-items:center; gap:.8rem; }
+.app-icon-btn { position:relative; width:42px; height:42px; border-radius:12px; background:#fff; border:1px solid var(--border-soft); display:flex; align-items:center; justify-content:center; color: var(--dark-text); text-decoration:none; flex-shrink:0; }
+.app-icon-btn .dot { position:absolute; top:8px; right:8px; width:8px; height:8px; border-radius:50%; background:var(--pink); }
+.app-user-menu { display:flex; align-items:center; gap:.6rem; text-decoration:none; padding:.3rem .7rem .3rem .3rem; border-radius:999px; background:#fff; border:1px solid var(--border-soft); }
+.app-user-menu img { border-radius:50%; display:block; }
+.app-user-menu .app-user-info { line-height:1.15; }
+.app-user-menu .app-user-info strong { display:block; font-size:.85rem; color:var(--dark-text); }
+.app-user-menu .app-user-info span { font-size:.72rem; color:var(--light-text); }
+
+.app-body { display:grid; grid-template-columns: 240px 1fr; gap:1.5rem; align-items:start; }
+.app-sidebar { background:#fff; border:1px solid var(--border-soft); border-radius:16px; box-shadow: 0 1px 2px rgba(17,24,39,.04); padding:1rem; align-self:start; position: sticky; top: 1.2rem; }
+.app-sidebar ul { list-style:none; display:flex; flex-direction:column; gap:.3rem; }
+.app-sidebar a { display:flex; align-items:center; gap:.7rem; padding:.8rem 1rem; border-radius:14px; color: var(--light-text); font-weight:600; text-decoration:none; transition:.2s ease; font-size:.92rem; }
+.app-sidebar a i { width:18px; text-align:center; flex-shrink:0; }
+.app-sidebar a:hover, .app-sidebar a.active { background: var(--primary-soft); color: var(--primary-color); }
+.app-main { min-width:0; }
+
+@media (max-width: 900px) {
+    .app-body { grid-template-columns: 1fr; }
+    .app-search span { display:none; }
+    .app-search { max-width:none; width:42px; height:42px; justify-content:center; padding:0; }
+    .app-user-menu .app-user-info { display:none; }
 }
 
-.navbar-brand {
-    font-weight: bold;
-    color: var(--primary-color) !important;
+/* Banner de bienvenida */
+.welcome-banner {
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: linear-gradient(120deg, var(--primary-dark), var(--primary-color) 75%);
 }
 
-.nav-link {
-    color: var(--light-text) !important;
-    font-weight: 500;
+.welcome-banner-content {
+    padding: 2rem 0 2rem 2.2rem;
+    color: #fff;
+    flex: 1;
+    min-width: 0;
 }
 
-.nav-link.active {
-    color: var(--primary-color) !important;
+.welcome-banner-content h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: .4rem;
 }
 
-.sidebar {
-    background-color: white;
-    min-height: calc(100vh - 56px);
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+.welcome-banner-content p {
+    opacity: .92;
+    font-size: .95rem;
+    max-width: 420px;
 }
 
-.sidebar .nav-link {
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
-}
-
-.sidebar .nav-link:hover {
-    background-color: #f0f0f0;
-}
+.welcome-banner-image { flex-shrink: 0; width: 240px; height: 150px; margin: 1.1rem 1.1rem 1.1rem 0; border-radius: 20px; overflow: hidden; }
+.welcome-banner-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 750px) { .welcome-banner-image { display: none; } }
 
 .card {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(17,24,39,.04);
 }
 
 .btn-primary {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
+    border-radius: 14px;
+    font-weight: 700;
 }
 
 .btn-primary:hover {
-    background-color: #5849c4;
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.btn-outline-primary, .btn-outline-danger, .btn-outline-secondary {
+    border-radius: 12px;
+    font-weight: 600;
 }
 
 .footer {
-    background-color: white;
+    background-color: transparent;
     padding: 2rem 0;
     margin-top: 3rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-soft);
 }
 
 .status-badge {
     padding: 0.5rem 1rem;
-    border-radius: 20px;
+    border-radius: 999px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
 }
 
-.status-pending { background-color: #ffeaa7; color: #d35400; }
-.status-approved { background-color: #55efc4; color: #00b894; }
-.status-rejected { background-color: #ff7675; color: #d63031; }
+.status-pending { background-color: #fef3c7; color: #92400e; }
+.status-approved { background-color: #dcfce7; color: #166534; }
+.status-rejected { background-color: #fee2e2; color: #991b1b; }
 
 
 .timeline { position: relative; padding-left: 3rem; list-style: none; }
-.timeline::before { content: ""; position: absolute; left: 0.75rem; top: 0; bottom: 0; width: 2px; background: #e9ecef; }
+.timeline::before { content: ""; position: absolute; left: 0.75rem; top: 0; bottom: 0; width: 2px; background: var(--border-soft); }
 .timeline-item { position: relative; margin-bottom: 2rem; }
 .timeline-marker { position: absolute; left: -2.75rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--primary-color); border: 3px solid white; box-shadow: 0 0 0 2px var(--primary-color); }
+
+/* ===== Stat cards: minimalistas, sin círculo de color detrás del ícono ===== */
+.stat-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:1rem; margin-bottom:1.5rem; }
+.stat-card { background:#fff; border:1px solid var(--border-soft); border-radius:16px; padding:1.1rem 1.2rem; }
+.stat-card .stat-label { display:flex; align-items:center; gap:.5rem; color:var(--light-text); font-weight:600; font-size:.82rem; margin-bottom:.6rem; }
+.stat-card .stat-label i { font-size:.85rem; width:16px; text-align:center; }
+.stat-card .stat-label i.purple { color:var(--primary-color); }
+.stat-card .stat-label i.green { color:var(--success-color); }
+.stat-card .stat-label i.pink { color:var(--pink, #ec4899); }
+.stat-card .stat-value { font-size:1.6rem; font-weight:800; color:var(--dark-text); line-height:1; }
+@media (max-width: 900px) { .stat-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .stat-grid { grid-template-columns: 1fr; } }
+
+/* ===== Mascotas recomendadas ===== */
+.featured-pets-row { display:grid; grid-template-columns: repeat(4,1fr); gap:1rem; }
+.featured-pet-card { background:#fff; border:1px solid var(--border-soft); border-radius:16px; overflow:hidden; text-decoration:none; display:block; color:inherit; }
+.featured-pet-card img { width:100%; height:110px; object-fit:cover; display:block; }
+.featured-pet-card .fp-body { padding:.7rem .8rem; }
+.featured-pet-card .fp-body strong { display:block; font-size:.9rem; color:var(--dark-text); }
+.featured-pet-card .fp-body span { font-size:.76rem; color:var(--light-text); }
+@media (max-width: 900px) { .featured-pets-row { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px) { .featured-pets-row { grid-template-columns: 1fr; } }

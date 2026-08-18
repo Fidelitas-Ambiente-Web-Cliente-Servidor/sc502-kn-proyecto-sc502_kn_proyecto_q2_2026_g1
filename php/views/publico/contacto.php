@@ -45,7 +45,7 @@
                     <button type="submit" class="adopt-btn contact-submit">Enviar mensaje</button>
                 </form>
                 <div id="contactSuccess" class="contact-success" style="display:none;">
-                    ¡Mensaje enviado! Te responderemos pronto.
+                    Se abrió tu programa de correo con el mensaje listo para enviar.
                 </div>
             </div>
 
